@@ -57,25 +57,29 @@ void __interrupt() isr(void){
     if (ADIF == 1){
         //revisar cual es el que termino de convertirse
         if (ADCON0bits.CHS == 0){
-//            motor = ADRESH;
-//            CCPR1L = motor;
-           
-            if (RB0 == 0){
-                CCPR1L = ADRESH;
-                    RE0 = 1;
-                    P1M0 = 1;
-                    P1M1 = 1;
-                     
-                }
-            if (RB1 == 0){
-                CCPR1L = ADRESH;
-                    RE1 = 1;
-                    P1M0 = 1;
-                    P1M1 = 0;
-                }
+            if (RB2 == 0){
+                CCPR1L = 0;
+                CCPR2L = 0;
+                RE2 = 1;
             }
-    
-    
+            else if (RB0 == 0){
+                CCPR1L = ADRESH;
+                CCPR2L = 0;
+                RE0 = 1;
+                
+            }
+            else if (RB1 == 0){
+                CCPR1L = 0;
+                CCPR2L = ADRESH;
+                
+                RE1 = 1;
+            }
+            else {
+                RE0 = 0;
+                RE1 = 0;
+                RE2 = 0;
+            }    
+            }
     }
         ADIF = 0;           //apaga la bandera
         
@@ -86,11 +90,9 @@ void __interrupt() isr(void){
  =============================================================================*/
 void main(void){
     setup();
-    //direccion = 0;
-    //motor = 0;
-    
-    
+     
     while(1){
+            
     if (ADCON0bits.GO == 0){       //si estaba en el canal0
             if (ADCON0bits.CHS == 0){    
                 ADCON0bits.CHS = 1;     //
@@ -145,7 +147,7 @@ void setup(void){
     TRISDbits.TRISD1 = 0; //salida de servo2
     TRISDbits.TRISD2 = 0; //salida de servo3
     
-    TRISCbits.TRISC2 = 0; //full bridge P1A
+    //TRISCbits.TRISC2 = 0; //full bridge P1A
     TRISDbits.TRISD5 = 0; //full bridge P1B
     TRISDbits.TRISD6 = 0; //full bridge P1C
     TRISDbits.TRISD7 = 0; //full bridge P1D
@@ -178,17 +180,17 @@ void setup(void){
     //configuracion del PWM junto con el TMR2
     TRISCbits.TRISC2 = 1;   //habilitar momentaneamente el pin de salida
     TRISCbits.TRISC1 = 1;
-    PR2 = 250;               //queremos que sea de 20ms por el servo
-    //CCP1CONbits.P1M = 0b01;    //full bridge output forward  
-    //CCP2CONbits.CCP2M = 0b1111; //para que sea PWM
+    PR2 = 125;               //queremos que sea de 20ms por el servo
+    CCP1CONbits.P1M = 0b00;    //single output
+    CCP2CONbits.CCP2M = 0b1111; //para que sea PWM
     CCP1CONbits.CCP1M = 0b00001100; //PWM mode, P1A, P1C active-high
     
     
     CCPR1L = 0x0F;          //ciclo de trabajo
     CCP1CONbits.DC1B = 0;   //los bits menos significativos
-    //CCPR2L = 0x0F;
-    //CCP2CONbits.DC2B0 = 0; 
-    //CCP2CONbits.DC2B1 = 0;
+    CCPR2L = 0x0F;
+    CCP2CONbits.DC2B0 = 0; 
+    CCP2CONbits.DC2B1 = 0;
     
     
     PIR1bits.TMR2IF = 0;    //limpiar la interrupcion del timer2

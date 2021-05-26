@@ -2769,25 +2769,29 @@ void __attribute__((picinterrupt(("")))) isr(void){
     if (ADIF == 1){
 
         if (ADCON0bits.CHS == 0){
-
-
-
-            if (RB0 == 0){
-                CCPR1L = ADRESH;
-                    RE0 = 1;
-                    P1M0 = 1;
-                    P1M1 = 1;
-
-                }
-            if (RB1 == 0){
-                CCPR1L = ADRESH;
-                    RE1 = 1;
-                    P1M0 = 1;
-                    P1M1 = 0;
-                }
+            if (RB2 == 0){
+                CCPR1L = 0;
+                CCPR2L = 0;
+                RE2 = 1;
             }
+            else if (RB0 == 0){
+                CCPR1L = ADRESH;
+                CCPR2L = 0;
+                RE0 = 1;
 
+            }
+            else if (RB1 == 0){
+                CCPR1L = 0;
+                CCPR2L = ADRESH;
 
+                RE1 = 1;
+            }
+            else {
+                RE0 = 0;
+                RE1 = 0;
+                RE2 = 0;
+            }
+            }
     }
         ADIF = 0;
 
@@ -2799,10 +2803,8 @@ void __attribute__((picinterrupt(("")))) isr(void){
 void main(void){
     setup();
 
-
-
-
     while(1){
+
     if (ADCON0bits.GO == 0){
             if (ADCON0bits.CHS == 0){
                 ADCON0bits.CHS = 1;
@@ -2816,7 +2818,7 @@ void main(void){
     }
 
 }
-# 116 "main_brazo.c"
+# 118 "main_brazo.c"
 void setup(void){
 
     TRISBbits.TRISB0 = 1;
@@ -2849,7 +2851,7 @@ void setup(void){
     TRISDbits.TRISD1 = 0;
     TRISDbits.TRISD2 = 0;
 
-    TRISCbits.TRISC2 = 0;
+
     TRISDbits.TRISD5 = 0;
     TRISDbits.TRISD6 = 0;
     TRISDbits.TRISD7 = 0;
@@ -2882,17 +2884,17 @@ void setup(void){
 
     TRISCbits.TRISC2 = 1;
     TRISCbits.TRISC1 = 1;
-    PR2 = 250;
-
-
+    PR2 = 125;
+    CCP1CONbits.P1M = 0b00;
+    CCP2CONbits.CCP2M = 0b1111;
     CCP1CONbits.CCP1M = 0b00001100;
 
 
     CCPR1L = 0x0F;
     CCP1CONbits.DC1B = 0;
-
-
-
+    CCPR2L = 0x0F;
+    CCP2CONbits.DC2B0 = 0;
+    CCP2CONbits.DC2B1 = 0;
 
 
     PIR1bits.TMR2IF = 0;

@@ -13,14 +13,14 @@
 %PSECTS
 $dist/default/production\Brazo_mecanico.X.production.o
 cinit CODE 0 F F 6 2
-text1 CODE 0 15 15 63 2
-text2 CODE 0 78 78 29 2
-maintext CODE 0 A1 A1 26 2
+text1 CODE 0 15 15 6A 2
+text2 CODE 0 7F 7F 34 2
+maintext CODE 0 B3 B3 26 2
 cstackCOMMON COMMON 1 70 70 5 1
 intentry CODE 0 4 4 8 2
 bssCOMMON COMMON 1 75 75 2 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\jpu20\AppData\Local\Temp\sdb8.o
+$C:\Users\jpu20\AppData\Local\Temp\smlc.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -39,13 +39,13 @@ BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST C7-1FFF 2
+CONST D9-1FFF 2
 ENTRY 3-3 2
-ENTRY C7-1FFF 2
+ENTRY D9-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
-CODE C7-1FFF 2
+CODE D9-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -53,9 +53,9 @@ SFR3 180-18F 1
 COMMON 77-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE C7-1FFF 2
+STRCODE D9-1FFF 2
 STRING 3-3 2
-STRING C7-1FFF 2
+STRING D9-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -70,107 +70,121 @@ STRING C7-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Brazo_mecanico.X.production.o
-F cinit CODE >491:C:\Users\jpu20\AppData\Local\Temp\sdb8.s
-F cinit CODE >494:C:\Users\jpu20\AppData\Local\Temp\sdb8.s
-F cinit CODE >508:C:\Users\jpu20\AppData\Local\Temp\sdb8.s
-10 cinit CODE >509:C:\Users\jpu20\AppData\Local\Temp\sdb8.s
-11 cinit CODE >515:C:\Users\jpu20\AppData\Local\Temp\sdb8.s
-11 cinit CODE >517:C:\Users\jpu20\AppData\Local\Temp\sdb8.s
-12 cinit CODE >518:C:\Users\jpu20\AppData\Local\Temp\sdb8.s
+F cinit CODE >495:C:\Users\jpu20\AppData\Local\Temp\smlc.s
+F cinit CODE >498:C:\Users\jpu20\AppData\Local\Temp\smlc.s
+F cinit CODE >512:C:\Users\jpu20\AppData\Local\Temp\smlc.s
+10 cinit CODE >513:C:\Users\jpu20\AppData\Local\Temp\smlc.s
+11 cinit CODE >519:C:\Users\jpu20\AppData\Local\Temp\smlc.s
+11 cinit CODE >521:C:\Users\jpu20\AppData\Local\Temp\smlc.s
+12 cinit CODE >522:C:\Users\jpu20\AppData\Local\Temp\smlc.s
 4 intentry CODE >56:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-78 text2 CODE >56:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-78 text2 CODE >57:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-7E text2 CODE >59:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-87 text2 CODE >63:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-8B text2 CODE >64:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-8D text2 CODE >65:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-8E text2 CODE >66:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-8F text2 CODE >67:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-90 text2 CODE >70:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-94 text2 CODE >71:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-96 text2 CODE >72:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-97 text2 CODE >73:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-98 text2 CODE >74:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-99 text2 CODE >80:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-9A text2 CODE >82:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-15 text1 CODE >116:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+7F text2 CODE >56:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+7F text2 CODE >57:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+85 text2 CODE >59:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+8E text2 CODE >60:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+92 text2 CODE >61:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+93 text2 CODE >62:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+94 text2 CODE >63:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+95 text2 CODE >64:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+96 text2 CODE >65:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+9A text2 CODE >66:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+9C text2 CODE >67:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+9D text2 CODE >68:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+9E text2 CODE >70:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+9F text2 CODE >71:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+A3 text2 CODE >72:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+A4 text2 CODE >73:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+A6 text2 CODE >75:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+A7 text2 CODE >76:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+A8 text2 CODE >77:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+A8 text2 CODE >78:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+A9 text2 CODE >79:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+AA text2 CODE >80:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+AB text2 CODE >83:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+AB text2 CODE >84:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+AC text2 CODE >86:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
 15 text1 CODE >118:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-18 text1 CODE >119:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-19 text1 CODE >120:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-1A text1 CODE >121:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-1B text1 CODE >122:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-1C text1 CODE >125:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-1F text1 CODE >126:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-20 text1 CODE >127:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-21 text1 CODE >128:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-22 text1 CODE >129:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-23 text1 CODE >130:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-26 text1 CODE >131:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-27 text1 CODE >132:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-28 text1 CODE >133:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-29 text1 CODE >138:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-2A text1 CODE >139:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-2B text1 CODE >140:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-2C text1 CODE >141:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-2D text1 CODE >142:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-2E text1 CODE >144:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-2F text1 CODE >145:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-30 text1 CODE >146:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-31 text1 CODE >148:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-32 text1 CODE >149:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-33 text1 CODE >150:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-34 text1 CODE >151:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-35 text1 CODE >154:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-36 text1 CODE >155:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-37 text1 CODE >156:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-38 text1 CODE >157:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-39 text1 CODE >158:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-3A text1 CODE >159:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-3B text1 CODE >161:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-3C text1 CODE >162:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-3D text1 CODE >163:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-3E text1 CODE >164:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-3F text1 CODE >167:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-43 text1 CODE >168:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-47 text1 CODE >170:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-4A text1 CODE >171:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-4B text1 CODE >172:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-4C text1 CODE >173:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-4F text1 CODE >174:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-50 text1 CODE >175:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-51 text1 CODE >179:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-52 text1 CODE >180:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-53 text1 CODE >181:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-55 text1 CODE >184:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-5B text1 CODE >187:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-5D text1 CODE >188:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-5F text1 CODE >194:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-60 text1 CODE >195:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-61 text1 CODE >196:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-62 text1 CODE >197:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-63 text1 CODE >198:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-67 text1 CODE >199:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-68 text1 CODE >200:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-6B text1 CODE >201:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-6C text1 CODE >204:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-6D text1 CODE >205:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-70 text1 CODE >206:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-71 text1 CODE >207:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-72 text1 CODE >211:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-73 text1 CODE >212:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-74 text1 CODE >213:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-75 text1 CODE >214:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-76 text1 CODE >215:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-77 text1 CODE >218:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-A1 maintext CODE >87:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-A1 maintext CODE >88:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-A6 maintext CODE >94:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-AC maintext CODE >95:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-B5 maintext CODE >96:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-B9 maintext CODE >97:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-BA maintext CODE >99:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-BC maintext CODE >101:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
-C0 maintext CODE >102:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+15 text1 CODE >120:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+18 text1 CODE >121:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+19 text1 CODE >122:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+1A text1 CODE >123:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+1B text1 CODE >124:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+1C text1 CODE >127:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+1F text1 CODE >128:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+20 text1 CODE >129:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+21 text1 CODE >130:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+22 text1 CODE >131:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+23 text1 CODE >132:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+26 text1 CODE >133:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+27 text1 CODE >134:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+28 text1 CODE >135:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+29 text1 CODE >140:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+2A text1 CODE >141:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+2B text1 CODE >142:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+2C text1 CODE >143:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+2D text1 CODE >144:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+2E text1 CODE >146:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+2F text1 CODE >147:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+30 text1 CODE >148:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+31 text1 CODE >151:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+32 text1 CODE >152:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+33 text1 CODE >153:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+34 text1 CODE >156:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+35 text1 CODE >157:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+36 text1 CODE >158:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+37 text1 CODE >159:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+38 text1 CODE >160:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+39 text1 CODE >161:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+3A text1 CODE >163:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+3B text1 CODE >164:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+3C text1 CODE >165:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+3D text1 CODE >166:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+3E text1 CODE >169:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+42 text1 CODE >170:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+46 text1 CODE >172:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+49 text1 CODE >173:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+4A text1 CODE >174:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+4B text1 CODE >175:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+4E text1 CODE >176:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+4F text1 CODE >177:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+50 text1 CODE >181:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+51 text1 CODE >182:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+52 text1 CODE >183:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+54 text1 CODE >184:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+58 text1 CODE >185:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+5A text1 CODE >186:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+5E text1 CODE >189:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+60 text1 CODE >190:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+62 text1 CODE >191:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+64 text1 CODE >192:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+65 text1 CODE >193:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+66 text1 CODE >196:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+67 text1 CODE >197:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+68 text1 CODE >198:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+69 text1 CODE >199:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+6A text1 CODE >200:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+6E text1 CODE >201:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+6F text1 CODE >202:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+72 text1 CODE >203:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+73 text1 CODE >206:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+74 text1 CODE >207:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+77 text1 CODE >208:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+78 text1 CODE >209:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+79 text1 CODE >213:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+7A text1 CODE >214:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+7B text1 CODE >215:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+7C text1 CODE >216:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+7D text1 CODE >217:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+7E text1 CODE >220:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+B3 maintext CODE >91:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+B3 maintext CODE >92:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+B8 maintext CODE >96:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+BE maintext CODE >97:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+C7 maintext CODE >98:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+CB maintext CODE >99:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+CC maintext CODE >101:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+CE maintext CODE >103:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+D2 maintext CODE >104:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -184,7 +198,7 @@ C0 maintext CODE >102:C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-__Hspace_0 C7 0 ABS 0 - -
+__Hspace_0 D9 0 ABS 0 - -
 __Hspace_1 77 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
@@ -192,22 +206,20 @@ __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _ADIF 66 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-_P1M0 BE 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-_P1M1 BF 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\jpu20\AppData\Local\Temp\sdb8.o
-_main 142 0 CODE 0 maintext dist/default/production\Brazo_mecanico.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\jpu20\AppData\Local\Temp\smlc.o
+_main 166 0 CODE 0 maintext dist/default/production\Brazo_mecanico.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-start 18 0 CODE 0 init C:\Users\jpu20\AppData\Local\Temp\sdb8.o
+start 18 0 CODE 0 init C:\Users\jpu20\AppData\Local\Temp\smlc.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sdb8.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sdb8.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sdb8.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sdb8.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sdb8.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sdb8.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\smlc.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\smlc.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\smlc.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\smlc.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\smlc.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\smlc.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
@@ -216,9 +228,10 @@ __Hclrtext 0 0 ABS 0 clrtext -
 _ADRESH 1E 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _ANSELH 189 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _CCPR1L 15 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
+_CCPR2L 1B 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\jpu20\AppData\Local\Temp\sdb8.o
-___stacklo 0 0 ABS 0 - C:\Users\jpu20\AppData\Local\Temp\sdb8.o
+___stackhi 0 0 ABS 0 - C:\Users\jpu20\AppData\Local\Temp\smlc.o
+___stacklo 0 0 ABS 0 - C:\Users\jpu20\AppData\Local\Temp\smlc.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _WPUBbits 95 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\Brazo_mecanico.X.production.o
@@ -227,7 +240,7 @@ _TRISBbits 86 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _TRISDbits 88 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _TRISEbits 89 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\jpu20\AppData\Local\Temp\sdb8.o
+___int_sp 0 0 STACK 2 stack C:\Users\jpu20\AppData\Local\Temp\smlc.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -264,19 +277,21 @@ __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _PR2 92 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _RB0 30 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _RB1 31 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
+_RB2 32 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _RE0 48 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _RE1 49 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-__S0 C7 0 ABS 0 - -
+_RE2 4A 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
+__S0 D9 0 ABS 0 - -
 __S1 77 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_isr F0 0 CODE 0 text2 dist/default/production\Brazo_mecanico.X.production.o
+_isr FE 0 CODE 0 text2 dist/default/production\Brazo_mecanico.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-__end_of_isr 142 0 CODE 0 text2 dist/default/production\Brazo_mecanico.X.production.o
+__end_of_isr 166 0 CODE 0 text2 dist/default/production\Brazo_mecanico.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\jpu20\AppData\Local\Temp\sdb8.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\jpu20\AppData\Local\Temp\smlc.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-__pmaintext 142 0 CODE 0 maintext dist/default/production\Brazo_mecanico.X.production.o
+__pmaintext 166 0 CODE 0 maintext dist/default/production\Brazo_mecanico.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
 _ADCON0bits 1F 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
@@ -295,7 +310,7 @@ __Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 6 0 CODE 0 reset_vec -
 __ptext1 2A 0 CODE 0 text1 dist/default/production\Brazo_mecanico.X.production.o
-__ptext2 F0 0 CODE 0 text2 dist/default/production\Brazo_mecanico.X.production.o
+__ptext2 FE 0 CODE 0 text2 dist/default/production\Brazo_mecanico.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
@@ -305,13 +320,14 @@ __Lclrtext 0 0 ABS 0 clrtext -
 _ANSELbits 188 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\Brazo_mecanico.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_main 18E 0 CODE 0 maintext dist/default/production\Brazo_mecanico.X.production.o
+__end_of_main 1B2 0 CODE 0 maintext dist/default/production\Brazo_mecanico.X.production.o
+_CCP2CONbits 1D 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _PORTC 7 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _PORTD 8 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 _PORTE 9 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
-__end_of_setup F0 0 CODE 0 text1 dist/default/production\Brazo_mecanico.X.production.o
+__end_of_setup FE 0 CODE 0 text1 dist/default/production\Brazo_mecanico.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 interrupt_function 8 0 CODE 0 intentry dist/default/production\Brazo_mecanico.X.production.o
@@ -347,7 +363,7 @@ _CCP1CONbits 17 0 ABS 0 - dist/default/production\Brazo_mecanico.X.production.o
 # All other numeric quantities are in decimal.
 %SEGMENTS
 cstackCOMMON 1 70 70 7 1
-intentry 0 4 8 C3 2
+intentry 0 4 8 D5 2
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
