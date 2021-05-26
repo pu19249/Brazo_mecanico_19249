@@ -2764,34 +2764,59 @@ char motor, direccion;
 
 
 void setup(void);
-# 74 "main_brazo.c"
+
+void __attribute__((picinterrupt(("")))) isr(void){
+    if (ADIF == 1){
+
+        if (ADCON0bits.CHS == 0){
+
+
+
+            if (RB0 == 0){
+                CCPR1L = ADRESH;
+                    RE0 = 1;
+                    P1M0 = 1;
+                    P1M1 = 1;
+
+                }
+            if (RB1 == 0){
+                CCPR1L = ADRESH;
+                    RE1 = 1;
+                    P1M0 = 1;
+                    P1M1 = 0;
+                }
+            }
+
+
+    }
+        ADIF = 0;
+
+    }
+
+
+
+
 void main(void){
     setup();
-    direccion = 0;
-    motor = 0;
 
 
 
-        for(;;){
-        if (RB0 == 0){
-                if (direccion == 0){
-                    direccion = 1;
-                    P1M1 = 1;
-                    P1M0 = 1;
-                }
-                else {
-                        direccion = 0;
-                        P1M1 = 0;
-                        P1M0 = 0;
-                    }
-                }
-        GO = 1;
-        while(GO);
-        motor = ADRESH;
-        CCPR1L = motor;
-# 117 "main_brazo.c"
-    } }
-# 126 "main_brazo.c"
+
+    while(1){
+    if (ADCON0bits.GO == 0){
+            if (ADCON0bits.CHS == 0){
+                ADCON0bits.CHS = 1;
+        }
+            else {
+                ADCON0bits.CHS = 0;
+            }
+        _delay((unsigned long)((100)*(4000000/4000000.0)));
+        ADCON0bits.GO = 1;
+        }
+    }
+
+}
+# 116 "main_brazo.c"
 void setup(void){
 
     TRISBbits.TRISB0 = 1;
@@ -2824,6 +2849,7 @@ void setup(void){
     TRISDbits.TRISD1 = 0;
     TRISDbits.TRISD2 = 0;
 
+    TRISCbits.TRISC2 = 0;
     TRISDbits.TRISD5 = 0;
     TRISDbits.TRISD6 = 0;
     TRISDbits.TRISD7 = 0;
@@ -2856,17 +2882,17 @@ void setup(void){
 
     TRISCbits.TRISC2 = 1;
     TRISCbits.TRISC1 = 1;
-    PR2 = 125;
-    CCP1CONbits.P1M = 0b01;
-    CCP2CONbits.CCP2M = 0b1111;
+    PR2 = 250;
+
+
     CCP1CONbits.CCP1M = 0b00001100;
 
 
-
+    CCPR1L = 0x0F;
     CCP1CONbits.DC1B = 0;
-    CCPR2L = 0x0F;
-    CCP2CONbits.DC2B0 = 0;
-    CCP2CONbits.DC2B1 = 0;
+
+
+
 
 
     PIR1bits.TMR2IF = 0;

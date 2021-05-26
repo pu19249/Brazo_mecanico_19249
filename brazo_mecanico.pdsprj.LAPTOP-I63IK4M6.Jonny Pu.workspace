@@ -1,16 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
  <FRAME activewindow="0">
-  <PLACEMENT>2c0000000000000001000000ffffffffffffffffffffffffffffffff8800000000000000f00600001d040000</PLACEMENT>
+  <PLACEMENT>2c00000000000000010000000083ffff0083ffffffffffffffffffffcf0000000c000000370700002c040000</PLACEMENT>
   <WINDOW type="default" module="ISIS"/>
+  <WINDOW type="default" module="DXP"/>
  </FRAME>
  <MODULE name="VSMDEBUG">
   <PWI>
-   <POPUP w="800" x="233" flags="00000002" y="206" h="200" pid="0" iid="-1">
+   <POPUP w="800" x="94" flags="00000003" y="97" h="191" pid="0" iid="-1">
     <PROPERTIES>
      <ITEM name="Message Column Width">661</ITEM>
      <ITEM name="ShowGrid">No</ITEM>
      <ITEM name="Source Column Width">100</ITEM>
+     <ITEM name="Time Column Width">120</ITEM>
      <ITEM name="Version">100</ITEM>
     </PROPERTIES>
    </POPUP>
@@ -31,16 +33,16 @@
      <ITEM name="nItems">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="450" x="130" flags="00008023" y="238" h="250" pid="0" iid="9">
+   <POPUP w="450" x="9" flags="00000022" y="351" h="250" pid="0" iid="9">
     <PROPERTIES>
      <ITEM name="AutoEcho">0</ITEM>
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="434" x="293" flags="00000008" y="266" h="216" pid="3" iid="1">
+   <POPUP w="65535" x="293" flags="00000008" y="266" h="65535" pid="3" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="8" x="313" flags="0000000a" y="286" h="32" pid="4" iid="1">
+   <POPUP w="1" x="313" flags="0000000a" y="286" h="1" pid="4" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -50,7 +52,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="8" x="333" flags="0000000a" y="306" h="32" pid="5" iid="1">
+   <POPUP w="1" x="333" flags="0000000a" y="306" h="1" pid="5" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -60,7 +62,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="16" x="353" flags="0000000a" y="326" h="32" pid="6" iid="1">
+   <POPUP w="1" x="353" flags="0000000a" y="326" h="1" pid="6" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -70,10 +72,10 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="130" x="373" flags="00000008" y="346" h="151" pid="7" iid="1">
+   <POPUP w="65535" x="373" flags="00000008" y="346" h="0" pid="7" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="8" x="393" flags="00000002" y="366" h="8" pid="8" iid="1">
+   <POPUP w="1" x="393" flags="00000002" y="366" h="0" pid="8" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -82,6 +84,9 @@
      <ITEM name="ShowToolTips">Yes</ITEM>
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
+   </POPUP>
+   <POPUP w="695" x="1225" flags="00008001" y="565" h="459" pid="0" iid="35">
+    <PROPERTIES/>
    </POPUP>
   </PWI>
  </MODULE>

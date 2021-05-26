@@ -53,68 +53,58 @@ char motor, direccion;
  =============================================================================*/
 void setup(void);
 
-//void __interrupt() isr(void){
-//    if (ADIF == 1){
-//        //revisar cual es el que termino de convertirse
-//        if (ADCON0bits.CHS == 0){
+void __interrupt() isr(void){
+    if (ADIF == 1){
+        //revisar cual es el que termino de convertirse
+        if (ADCON0bits.CHS == 0){
 //            motor = ADRESH;
-//            CCPR1L = motor;}
-//    
-//        if (ADCON0bits.CHS == 1){ //el otro canal de PWM
-//            CCPR2L = ADRESH;
-//        }
-//    }
-//        ADIF = 0;           //apaga la bandera
-//        
-//    }
+//            CCPR1L = motor;
+           
+            if (RB0 == 0){
+                CCPR1L = ADRESH;
+                    RE0 = 1;
+                    P1M0 = 1;
+                    P1M1 = 1;
+                     
+                }
+            if (RB1 == 0){
+                CCPR1L = ADRESH;
+                    RE1 = 1;
+                    P1M0 = 1;
+                    P1M1 = 0;
+                }
+            }
+    
+    
+    }
+        ADIF = 0;           //apaga la bandera
+        
+    }
 
 /*==============================================================================
                                 LOOP PRINCIPAL
  =============================================================================*/
 void main(void){
     setup();
-    direccion = 0;
-    motor = 0;
+    //direccion = 0;
+    //motor = 0;
     
     
-    //while(1){
-        for(;;){
-        if (RB0 == 0){
-                if (direccion == 0){
-                    direccion = 1;
-                    P1M1 = 1;
-                    P1M0 = 1;
-                }
-                else {
-                        direccion = 0;
-                        P1M1 = 0;
-                        P1M0 = 0;
-                    }
-                }
-        GO = 1;
-        while(GO);
-        motor = ADRESH;
-        CCPR1L = motor;
-//        //cambio de canales para la conversin analogica
-//        if (ADCON0bits.GO == 0){       //si estaba en el canal0
-//            
-//            if (ADCON0bits.CHS == 1){    
-//                ADCON0bits.CHS = 0;     //
-//                
-//            }
-//            if (ADCON0bits.CHS == 2){
-//                ADCON0bits.CHS = 3;   //si es otro cambiamos el canal de nuevo
-//                
-//            }
-//            if (ADCON0bits.CHS == 3){
-//                ADCON0bits.CHS = 0;
-//            }
-//        __delay_us(100);
-//        ADCON0bits.GO = 1; //inicia la conversion otra vez
-//        }
-//    }
-//}
-    }   }
+    while(1){
+    if (ADCON0bits.GO == 0){       //si estaba en el canal0
+            if (ADCON0bits.CHS == 0){    
+                ADCON0bits.CHS = 1;     //
+        }
+            else {
+                ADCON0bits.CHS = 0;   //si es otro cambiamos el canal de nuevo
+            }
+        __delay_us(100);
+        ADCON0bits.GO = 1; //inicia la conversion otra vez
+        }
+    }
+
+}
+
 /*==============================================================================
                                     FUNCIONES
  =============================================================================*/
@@ -155,6 +145,7 @@ void setup(void){
     TRISDbits.TRISD1 = 0; //salida de servo2
     TRISDbits.TRISD2 = 0; //salida de servo3
     
+    TRISCbits.TRISC2 = 0; //full bridge P1A
     TRISDbits.TRISD5 = 0; //full bridge P1B
     TRISDbits.TRISD6 = 0; //full bridge P1C
     TRISDbits.TRISD7 = 0; //full bridge P1D
@@ -187,17 +178,17 @@ void setup(void){
     //configuracion del PWM junto con el TMR2
     TRISCbits.TRISC2 = 1;   //habilitar momentaneamente el pin de salida
     TRISCbits.TRISC1 = 1;
-    PR2 = 125;               //queremos que sea de 20ms por el servo
-    CCP1CONbits.P1M = 0b01;    //full bridge output forward  
-    CCP2CONbits.CCP2M = 0b1111; //para que sea PWM
+    PR2 = 250;               //queremos que sea de 20ms por el servo
+    //CCP1CONbits.P1M = 0b01;    //full bridge output forward  
+    //CCP2CONbits.CCP2M = 0b1111; //para que sea PWM
     CCP1CONbits.CCP1M = 0b00001100; //PWM mode, P1A, P1C active-high
     
     
-    //CCPR1L = 0x0F;          //ciclo de trabajo
+    CCPR1L = 0x0F;          //ciclo de trabajo
     CCP1CONbits.DC1B = 0;   //los bits menos significativos
-    CCPR2L = 0x0F;
-    CCP2CONbits.DC2B0 = 0; 
-    CCP2CONbits.DC2B1 = 0;
+    //CCPR2L = 0x0F;
+    //CCP2CONbits.DC2B0 = 0; 
+    //CCP2CONbits.DC2B1 = 0;
     
     
     PIR1bits.TMR2IF = 0;    //limpiar la interrupcion del timer2
