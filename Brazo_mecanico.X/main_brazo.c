@@ -49,6 +49,7 @@
  =============================================================================*/
 char motor, direccion;
 char contador, valor;
+char pot2, pot3, pot4;
 /*==============================================================================
                                INTERRUPCIONES Y PROTOTIPOS
  =============================================================================*/
@@ -59,6 +60,7 @@ void __interrupt() isr(void){
     if (ADIF == 1){
         //revisar cual es el que termino de convertirse
         if (ADCON0bits.CHS == 0){
+            ADCON0bits.CHS = 1;
             if (RB2 == 0){
                 CCPR1L = 0;
                 CCPR2L = 0;
@@ -68,12 +70,10 @@ void __interrupt() isr(void){
                 CCPR1L = ADRESH/4;
                 CCPR2L = 0;
                 RE0 = 1;
-                
             }
             else if (RB1 == 0){
                 CCPR1L = 0;
                 CCPR2L = ADRESH/4;
-                
                 RE1 = 1;
             }
             else {
@@ -83,60 +83,112 @@ void __interrupt() isr(void){
             }    
         }
         else if (ADCON0bits.CHS == 1){
-            valor = ADRESH;
-//            if (valor<=50){
-//                RD0 = 1;
-//                __delay_ms(1);
-//                RD0 = 0;
-//                __delay_ms(19);
-//            }
-//            else if ((valor<=101) && (valor>=51)){
-//                RD0 = 1;
-//                __delay_ms(2);
-//                RD0 = 0;
-//                __delay_ms(18);
-//                      
-//            }
-//            else if ((valor<=152) && (valor>= 102)){
-//                RD0 = 1;
-//                __delay_ms(1);
-//                RD0 = 0;
-//                __delay_ms(19);
-//                
-//            }
-//            else if ((valor<=203) && (valor>=153)){
-//                RD0 = 1;
-//                __delay_ms(2);
-//                RD0 = 0;
-//                __delay_ms(18);
-//            }
-//            else if ((valor>=204)){
-//                RD0 = 1;
-//                __delay_ms(1);
-//                RD0 = 0;
-//                __delay_ms(19);
+            ADCON0bits.CHS = 2;
+            pot2 = ADRESH;
+            if (pot2<=50){ //de 0 a 50 en el pot va a tener -90 grados
+                RD0 = 1;
+                __delay_ms(0.7);
+                RD0 = 0;
+                __delay_ms(19.3);
+            }
+            if ((pot2<=101) && (pot2>=51)){
+                RD0 = 1;
+                __delay_ms(1.25);
+                RD0 = 0;
+                __delay_ms(18.75);
+            }
+            if ((pot2<=152) && (pot2>=102)){
+                RD0 = 1;
+                __delay_ms(1.5);
+                RD0 = 0;
+                __delay_ms(18.5);
+            }
+            if ((pot2<=203) && (pot2>=153)){
+                RD0 = 1;
+                __delay_ms(1.75);
+                RD0 = 0;
+                __delay_ms(18.25);
+            }
+            if (pot2>=204){
+                RD0 = 1;
+                __delay_ms(2);
+                RD0 = 0;
+                __delay_ms(18);
+            }
+        }
+        else if (ADCON0bits.CHS == 2){
+            ADCON0bits.CHS = 3;
+            pot3 = ADRESH;
+            if (pot3<=50){ //de 0 a 50 en el pot va a tener -90 grados
+                RD1 = 1;
+                __delay_ms(0.7);
+                RD1 = 0;
+                __delay_ms(19.3);
+            }
+            if ((pot3<=101) && (pot3>=51)){
+                RD1 = 1;
+                __delay_ms(1.25);
+                RD1 = 0;
+                __delay_ms(18.75);
+            }
+            if ((pot3<=152) && (pot3>=102)){
+                RD1 = 1;
+                __delay_ms(1.5);
+                RD1 = 0;
+                __delay_ms(18.5);
+            }
+            if ((pot3<=203) && (pot3>=153)){
+                RD1 = 1;
+                __delay_ms(1.75);
+                RD1 = 0;
+                __delay_ms(18.25);
+            }
+            if (pot3>=204){
+                RD1 = 1;
+                __delay_ms(2);
+                RD1 = 0;
+                __delay_ms(18);
             }
         }
         
-    
+        else if (ADCON0bits.CHS == 3){
+            ADCON0bits.CHS = 0;
+            pot4 = ADRESH;
+            if (pot4<=50){ //de 0 a 50 en el pot va a tener -90 grados
+                RD2 = 1;
+                __delay_ms(0.7);
+                RD2 = 0;
+                __delay_ms(19.3);
+            }
+            if ((pot4<=101) && (pot4>=51)){
+                RD2 = 1;
+                __delay_ms(1.25);
+                RD2 = 0;
+                __delay_ms(18.75);
+            }
+            if ((pot4<=152) && (pot4>=102)){
+                RD2 = 1;
+                __delay_ms(1.5);
+                RD2 = 0;
+                __delay_ms(18.5);
+            }
+            if ((pot4<=203) && (pot4>=153)){
+                RD2 = 1;
+                __delay_ms(1.75);
+                RD2 = 0;
+                __delay_ms(18.25);
+            }
+            if (pot4>=204){
+                RD2 = 1;
+                __delay_ms(2);
+                RD2 = 0;
+                __delay_ms(18);
+            }
+        }
         ADIF = 0;           //apaga la bandera
-       
-    if (T0IF == 1){
-        contador++;
-       
-        if ((contador < valor)){
-            RD0 = 1;
-        }
-        else{
-            RD0 = 0;
-            
-        }
-        if (contador > 19){
-            contador = 0;
-        }
-        
-    }    
-        T0IF = 0;
+        __delay_us(100);
+    }
+
 }
 /*==============================================================================
                                 LOOP PRINCIPAL
@@ -146,50 +198,18 @@ void main(void){
      
     while(1){
             
-    if (ADCON0bits.GO == 0){       //si estaba en el canal0
-            if (ADCON0bits.CHS == 0){    
-                ADCON0bits.CHS = 1;     //
-            }
-            else if (ADCON0bits.CHS == 1){
-            ADCON0bits.CHS = 2;   //si es otro cambiamos el canal de nuevo
-//            valor = ADRESH;
-//            if (valor<=50){
-//                RD0 = 1;
-//                __delay_ms(1);
-//                RD0 = 0;
-//                __delay_ms(19);
-//            }
-//            if ((valor<=101) && (valor>=51)){
-//                RD0 = 1;
-//                __delay_ms(2);
-//                RD0 = 0;
-//                __delay_ms(18);
-//                      
-//            }}
-            }
-    }
-            
-        __delay_us(100);
         ADCON0bits.GO = 1; //inicia la conversion otra vez
         }
     
     
-    }
+}
 
 
 
 /*==============================================================================
                                     FUNCIONES
  =============================================================================*/
-//void pwm(void){
-//    char signal;
-//    signal = ADRESH;
-//    if (TMR0 != 0)
-//        TMR0 = 0;
-//    TMR0 = ADRESH;
-//    RD0 = signal;
-//    
-//}
+
 
 
 /*==============================================================================
@@ -289,14 +309,14 @@ void setup(void){
     INTCONbits.PEIE = 1;    //periferical interrupts
 //    INTCONbits.T0IE = 1;    //habilita la interrupcion del timer0
 //    INTCONbits.T0IF = 0;    //limpia bit de int del timer 0
-    
-    //configurar el timer0
-    OPTION_REGbits.T0CS = 0;     //oscilador interno
-    OPTION_REGbits.PSA = 0;      //prescaler asignado al timer0
-    OPTION_REGbits.PS0 = 1;      //prescaler tenga un valor 1:16
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS2 = 0;
-    TMR0 = 249;
+//    
+//    //configurar el timer0
+//    OPTION_REGbits.T0CS = 0;     //oscilador interno
+//    OPTION_REGbits.PSA = 0;      //prescaler asignado al timer0
+//    OPTION_REGbits.PS0 = 1;      //prescaler tenga un valor 1:16
+//    OPTION_REGbits.PS1 = 1;
+//    OPTION_REGbits.PS2 = 0;
+//    TMR0 = 176;
     
     //Limpiar puertos
     PORTA = 0x00;
