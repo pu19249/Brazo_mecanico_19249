@@ -33,9 +33,9 @@
 #pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
 #pragma config IESO = OFF       // Internal External Switchover bit (Internal
 ///External Switchover mode is disabled)
-#pragma config FCMEN = ON      // Fail-Safe Clock Monitor Enabled bit 
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit 
 //(Fail-Safe Clock Monitor is disabled)
-#pragma config LVP = ON         // Low Voltage Programming Enable bit 
+#pragma config LVP = OFF        // Low Voltage Programming Enable bit 
 //(RB3/PGM pin has PGM function, low voltage programming enabled)
 
 // CONFIG2
@@ -48,10 +48,12 @@
                                 VARIABLES
  =============================================================================*/
 char motor, direccion;
+char contador, valor;
 /*==============================================================================
                                INTERRUPCIONES Y PROTOTIPOS
  =============================================================================*/
 void setup(void);
+void pwm(void);
 
 void __interrupt() isr(void){
     if (ADIF == 1){
@@ -63,14 +65,14 @@ void __interrupt() isr(void){
                 RE2 = 1;
             }
             else if (RB0 == 0){
-                CCPR1L = ADRESH;
+                CCPR1L = ADRESH/4;
                 CCPR2L = 0;
                 RE0 = 1;
                 
             }
             else if (RB1 == 0){
                 CCPR1L = 0;
-                CCPR2L = ADRESH;
+                CCPR2L = ADRESH/4;
                 
                 RE1 = 1;
             }
@@ -79,12 +81,63 @@ void __interrupt() isr(void){
                 RE1 = 0;
                 RE2 = 0;
             }    
+        }
+        else if (ADCON0bits.CHS == 1){
+            valor = ADRESH;
+//            if (valor<=50){
+//                RD0 = 1;
+//                __delay_ms(1);
+//                RD0 = 0;
+//                __delay_ms(19);
+//            }
+//            else if ((valor<=101) && (valor>=51)){
+//                RD0 = 1;
+//                __delay_ms(2);
+//                RD0 = 0;
+//                __delay_ms(18);
+//                      
+//            }
+//            else if ((valor<=152) && (valor>= 102)){
+//                RD0 = 1;
+//                __delay_ms(1);
+//                RD0 = 0;
+//                __delay_ms(19);
+//                
+//            }
+//            else if ((valor<=203) && (valor>=153)){
+//                RD0 = 1;
+//                __delay_ms(2);
+//                RD0 = 0;
+//                __delay_ms(18);
+//            }
+//            else if ((valor>=204)){
+//                RD0 = 1;
+//                __delay_ms(1);
+//                RD0 = 0;
+//                __delay_ms(19);
             }
-    }
-        ADIF = 0;           //apaga la bandera
+        }
         
-    }
-
+    
+        ADIF = 0;           //apaga la bandera
+       
+    if (T0IF == 1){
+        contador++;
+       
+        if ((contador < valor)){
+            RD0 = 1;
+        }
+        else{
+            RD0 = 0;
+            
+        }
+        if (contador > 19){
+            contador = 0;
+        }
+        
+    }    
+        T0IF = 0;
+}
 /*==============================================================================
                                 LOOP PRINCIPAL
  =============================================================================*/
@@ -96,20 +149,47 @@ void main(void){
     if (ADCON0bits.GO == 0){       //si estaba en el canal0
             if (ADCON0bits.CHS == 0){    
                 ADCON0bits.CHS = 1;     //
-        }
-            else {
-                ADCON0bits.CHS = 0;   //si es otro cambiamos el canal de nuevo
             }
+            else if (ADCON0bits.CHS == 1){
+            ADCON0bits.CHS = 2;   //si es otro cambiamos el canal de nuevo
+//            valor = ADRESH;
+//            if (valor<=50){
+//                RD0 = 1;
+//                __delay_ms(1);
+//                RD0 = 0;
+//                __delay_ms(19);
+//            }
+//            if ((valor<=101) && (valor>=51)){
+//                RD0 = 1;
+//                __delay_ms(2);
+//                RD0 = 0;
+//                __delay_ms(18);
+//                      
+//            }}
+            }
+    }
+            
         __delay_us(100);
         ADCON0bits.GO = 1; //inicia la conversion otra vez
         }
+    
+    
     }
 
-}
+
 
 /*==============================================================================
                                     FUNCIONES
  =============================================================================*/
+//void pwm(void){
+//    char signal;
+//    signal = ADRESH;
+//    if (TMR0 != 0)
+//        TMR0 = 0;
+//    TMR0 = ADRESH;
+//    RD0 = signal;
+//    
+//}
 
 
 /*==============================================================================
@@ -207,7 +287,16 @@ void setup(void){
     PIR1bits.ADIF = 0;      //limpiar la interrupcion del ADC
     INTCONbits.GIE = 1;     //habilita las interrupciones globales
     INTCONbits.PEIE = 1;    //periferical interrupts
+//    INTCONbits.T0IE = 1;    //habilita la interrupcion del timer0
+//    INTCONbits.T0IF = 0;    //limpia bit de int del timer 0
     
+    //configurar el timer0
+    OPTION_REGbits.T0CS = 0;     //oscilador interno
+    OPTION_REGbits.PSA = 0;      //prescaler asignado al timer0
+    OPTION_REGbits.PS0 = 1;      //prescaler tenga un valor 1:16
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS2 = 0;
+    TMR0 = 249;
     
     //Limpiar puertos
     PORTA = 0x00;

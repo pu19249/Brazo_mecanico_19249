@@ -2745,9 +2745,9 @@ extern int printf(const char *, ...);
 #pragma config BOREN = OFF
 #pragma config IESO = OFF
 
-#pragma config FCMEN = ON
+#pragma config FCMEN = OFF
 
-#pragma config LVP = ON
+#pragma config LVP = OFF
 
 
 
@@ -2760,10 +2760,12 @@ extern int printf(const char *, ...);
 
 
 char motor, direccion;
+char contador, valor;
 
 
 
 void setup(void);
+void pwm(void);
 
 void __attribute__((picinterrupt(("")))) isr(void){
     if (ADIF == 1){
@@ -2775,14 +2777,14 @@ void __attribute__((picinterrupt(("")))) isr(void){
                 RE2 = 1;
             }
             else if (RB0 == 0){
-                CCPR1L = ADRESH;
+                CCPR1L = ADRESH/4;
                 CCPR2L = 0;
                 RE0 = 1;
 
             }
             else if (RB1 == 0){
                 CCPR1L = 0;
-                CCPR2L = ADRESH;
+                CCPR2L = ADRESH/4;
 
                 RE1 = 1;
             }
@@ -2791,12 +2793,33 @@ void __attribute__((picinterrupt(("")))) isr(void){
                 RE1 = 0;
                 RE2 = 0;
             }
+        }
+        else if (ADCON0bits.CHS == 1){
+            valor = ADRESH;
+# 118 "main_brazo.c"
             }
-    }
+        }
+
+
         ADIF = 0;
 
-    }
+    if (T0IF == 1){
+        contador++;
 
+        if ((contador < valor)){
+            RD0 = 1;
+        }
+        else{
+            RD0 = 0;
+
+        }
+        if (contador > 19){
+            contador = 0;
+        }
+
+    }
+        T0IF = 0;
+}
 
 
 
@@ -2808,17 +2831,20 @@ void main(void){
     if (ADCON0bits.GO == 0){
             if (ADCON0bits.CHS == 0){
                 ADCON0bits.CHS = 1;
-        }
-            else {
-                ADCON0bits.CHS = 0;
             }
+            else if (ADCON0bits.CHS == 1){
+            ADCON0bits.CHS = 2;
+# 169 "main_brazo.c"
+            }
+    }
+
         _delay((unsigned long)((100)*(4000000/4000000.0)));
         ADCON0bits.GO = 1;
         }
-    }
 
-}
-# 118 "main_brazo.c"
+
+    }
+# 198 "main_brazo.c"
 void setup(void){
 
     TRISBbits.TRISB0 = 1;
@@ -2912,6 +2938,15 @@ void setup(void){
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
+
+
+
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS0 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS2 = 0;
+    TMR0 = 249;
 
 
     PORTA = 0x00;
