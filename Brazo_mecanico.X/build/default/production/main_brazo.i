@@ -2763,11 +2763,13 @@ char motor, direccion;
 char contador, valor;
 char pot2, pot3, pot4;
 char pot2_nuevo, pot3_nuevo, pot4_nuevo;
+char estado_motor;
+char estado_motor_nuevo;
+char puerto_a, puerto_b;
 
 
 
 void setup(void);
-void pwm(void);
 void servo_1_1(void);
 void servo_1_2(void);
 void servo_1_3(void);
@@ -2784,6 +2786,11 @@ void servo_3_2(void);
 void servo_3_3(void);
 void servo_3_4(void);
 void servo_3_5(void);
+void motor_1(void);
+void motor_2(void);
+void motor_detenido(void);
+void putch(char dato);
+void mensaje(void);
 
 void escribir_eeprom(char data, char address);
 char leer_eeprom(char address);
@@ -2795,19 +2802,16 @@ void __attribute__((picinterrupt(("")))) isr(void){
         if (ADCON0bits.CHS == 0){
             ADCON0bits.CHS = 1;
             if (RB2 == 0){
-                CCPR1L = 0;
-                CCPR2L = 0;
-                RE2 = 1;
+                motor_detenido();
+                estado_motor = 0b11;
             }
             else if (RB0 == 0){
-                CCPR1L = ADRESH/4;
-                CCPR2L = 0;
-                RE0 = 1;
+                motor_1();
+                estado_motor = 0b01;
             }
             else if (RB1 == 0){
-                CCPR1L = 0;
-                CCPR2L = ADRESH/4;
-                RE1 = 1;
+                motor_2();
+                estado_motor = 0b10;
             }
             else {
                 RE0 = 0;
@@ -2885,6 +2889,7 @@ void __attribute__((picinterrupt(("")))) isr(void){
             escribir_eeprom(pot2, 0x16);
             escribir_eeprom(pot3, 0x17);
             escribir_eeprom(pot4, 0x18);
+            escribir_eeprom(estado_motor, 0x19);
             _delay((unsigned long)((500)*(4000000/4000.0)));
             RB5 = 0;
         }
@@ -2896,6 +2901,7 @@ void __attribute__((picinterrupt(("")))) isr(void){
             pot2_nuevo = leer_eeprom(0x16);
             pot3_nuevo = leer_eeprom(0x17);
             pot4_nuevo = leer_eeprom(0x18);
+            estado_motor_nuevo = leer_eeprom(0x19);
             if (pot2_nuevo<=50){
                 servo_1_1();
                 pot2 = 30;
@@ -2956,6 +2962,18 @@ void __attribute__((picinterrupt(("")))) isr(void){
                servo_3_5();
                pot4 = 205;
             }
+            if (estado_motor_nuevo == 0b11){
+                motor_detenido();
+
+            }
+            if (estado_motor_nuevo == 0b01){
+                motor_1();
+
+            }
+            if (estado_motor_nuevo == 0b10){
+                motor_2();
+
+            }
         _delay((unsigned long)((2000)*(4000000/4000.0)));
 
         RB6 = 0;
@@ -2977,12 +2995,11 @@ void main(void){
     while(1){
 
         ADCON0bits.GO = 1;
+        mensaje();
         }
 
 
 }
-
-
 
 
 
@@ -3007,7 +3024,7 @@ void escribir_eeprom(char data, char address){
 
     EECON1bits.WREN = 0;
     INTCONbits.GIE = 0;
-
+    return;
 }
 
 char leer_eeprom(char address){
@@ -3123,6 +3140,173 @@ void servo_3_5(void){
     _delay((unsigned long)((18)*(4000000/4000.0)));
 }
 
+void motor_detenido(void){
+    CCPR1L = 0;
+    CCPR2L = 0;
+    RE2 = 1;
+}
+
+void motor_1(void){
+    CCPR1L = ADRESH/4;
+    CCPR2L = 0;
+    RE0 = 1;
+}
+
+void motor_2(void){
+    CCPR1L = 0;
+    CCPR2L = ADRESH/4;
+    RE1 = 1;
+}
+
+void putch(char dato){
+    while(TXIF == 0);
+    TXREG = dato;
+    return;
+}
+
+void mensaje(void){
+    _delay((unsigned long)((500)*(4000000/4000.0)));
+    printf("\r Que accion desea ejecutar \r");
+    _delay((unsigned long)((250)*(4000000/4000.0)));
+    printf("(1) Mover servos \r");
+    _delay((unsigned long)((250)*(4000000/4000.0)));
+    printf("(2) Mover motor \r");
+    _delay((unsigned long)((250)*(4000000/4000.0)));
+    printf("(3)  \r");
+    while (RCIF == 0);
+    if (RCREG == '1'){
+        _delay((unsigned long)((500)*(4000000/4000.0)));
+        printf("\r ¿Cual de los servos desea mover?\r");
+        _delay((unsigned long)((250)*(4000000/4000.0)));
+        printf("\r a. Servo 1");
+        _delay((unsigned long)((250)*(4000000/4000.0)));
+        printf("\r b. Servo 2");
+        _delay((unsigned long)((250)*(4000000/4000.0)));
+        printf("\r c. Servo 3");
+        while (RCIF == 0);
+        if (RCREG == 'a'){
+            printf("\r Seleccione entre los siguiente para dar la posicion:");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 1: -45 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 2: -90 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 3: 0 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 4: 90 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 5: 45 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            if (RCREG == '1'){
+                servo_1_1();
+            }
+            if (RCREG == '2'){
+                servo_1_2();
+            }
+            if (RCREG == '3'){
+                servo_1_3();
+            }
+            if (RCREG == '4'){
+                servo_1_4();
+            }
+            if (RCREG == '5'){
+                servo_1_5();
+            }
+            while (RCIF == 0);
+        }
+        if (RCREG == 'b'){
+            printf("\r Seleccione entre los siguiente para dar la posicion:");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 1: -45 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 2: -90 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 3: 0 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 4: 90 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 5: 45 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            if (RCREG == '1'){
+                servo_2_1();
+            }
+            if (RCREG == '2'){
+                servo_2_2();
+            }
+            if (RCREG == '3'){
+                servo_2_3();
+            }
+            if (RCREG == '4'){
+                servo_2_4();
+            }
+            if (RCREG == '5'){
+                servo_2_5();
+            }
+            while (RCIF == 0);
+        }
+        if (RCREG == 'c'){
+            printf("\r Seleccione entre los siguiente para dar la posicion:");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 1: -45 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 2: -90 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 3: 0 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 4: 90 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            printf("\r 5: 45 ");
+            _delay((unsigned long)((250)*(4000000/4000.0)));
+            if (RCREG == '1'){
+                servo_3_1();
+            }
+            if (RCREG == '2'){
+                servo_3_2();
+            }
+            if (RCREG == '3'){
+                servo_3_3();
+            }
+            if (RCREG == '4'){
+                servo_3_4();
+            }
+            if (RCREG == '5'){
+                servo_3_5();
+            }
+            while (RCIF == 0);
+        }
+    }
+    if (RCREG == '2'){
+        printf("\r Hacia donde desea mover el motor? \r");
+        _delay((unsigned long)((250)*(4000000/4000.0)));
+        printf("\r 1: Derecha");
+        _delay((unsigned long)((250)*(4000000/4000.0)));
+        printf("\r 2: Izquierda");
+        _delay((unsigned long)((250)*(4000000/4000.0)));
+        printf("\r 3: Detener");
+        _delay((unsigned long)((250)*(4000000/4000.0)));
+        while (RCIF == 0);
+        if (RCREG == '1'){
+            motor_1();
+        }
+        if (RCREG == '2'){
+            motor_2();
+        }
+        if (RCREG == '3'){
+            motor_detenido();
+        }
+    }
+
+
+
+
+
+
+    else{
+        (0);
+    }
+    return;
+}
+
 
 
 
@@ -3218,11 +3402,33 @@ void setup(void){
     PIR1bits.ADIF = 0;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-# 521 "main_brazo.c"
+# 705 "main_brazo.c"
     IOCBbits.IOCB3 = 1;
     IOCBbits.IOCB4 = 1;
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
+
+
+    SPBRG = 103;
+    SPBRGH = 0;
+    BAUDCTLbits.BRG16 = 1;
+    TXSTAbits.BRGH = 1;
+
+    TXSTAbits.SYNC = 0;
+
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.CREN = 1;
+
+    TXSTAbits.TX9 = 0;
+    TXSTAbits.TXEN = 1;
+    RCSTAbits.RX9 = 0;
+
+
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+
+    PIR1bits.TXIF = 0;
+    PIR1bits.RCIF = 0;
 
 
     PORTA = 0x00;
