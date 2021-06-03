@@ -2762,11 +2762,32 @@ extern int printf(const char *, ...);
 char motor, direccion;
 char contador, valor;
 char pot2, pot3, pot4;
+char pot2_nuevo, pot3_nuevo, pot4_nuevo;
 
 
 
 void setup(void);
 void pwm(void);
+void servo_1_1(void);
+void servo_1_2(void);
+void servo_1_3(void);
+void servo_1_4(void);
+void servo_1_5(void);
+void servo_1_6(void);
+void servo_2_1(void);
+void servo_2_2(void);
+void servo_2_3(void);
+void servo_2_4(void);
+void servo_2_5(void);
+void servo_3_1(void);
+void servo_3_2(void);
+void servo_3_3(void);
+void servo_3_4(void);
+void servo_3_5(void);
+
+void escribir_eeprom(char data, char address);
+char leer_eeprom(char address);
+
 
 void __attribute__((picinterrupt(("")))) isr(void){
     if (ADIF == 1){
@@ -2798,68 +2819,39 @@ void __attribute__((picinterrupt(("")))) isr(void){
             ADCON0bits.CHS = 2;
             pot2 = ADRESH;
             if (pot2<=50){
-                RD0 = 1;
-                _delay((unsigned long)((0.7)*(4000000/4000.0)));
-                RD0 = 0;
-                _delay((unsigned long)((19.3)*(4000000/4000.0)));
+                servo_1_1();
             }
             if ((pot2<=101) && (pot2>=51)){
-                RD0 = 1;
-                _delay((unsigned long)((1.25)*(4000000/4000.0)));
-                RD0 = 0;
-                _delay((unsigned long)((18.75)*(4000000/4000.0)));
+                servo_1_2();
+
             }
             if ((pot2<=152) && (pot2>=102)){
-                RD0 = 1;
-                _delay((unsigned long)((1.5)*(4000000/4000.0)));
-                RD0 = 0;
-                _delay((unsigned long)((18.5)*(4000000/4000.0)));
+                servo_1_3();
             }
             if ((pot2<=203) && (pot2>=153)){
-                RD0 = 1;
-                _delay((unsigned long)((1.75)*(4000000/4000.0)));
-                RD0 = 0;
-                _delay((unsigned long)((18.25)*(4000000/4000.0)));
+                servo_1_4();
             }
             if (pot2>=204){
-                RD0 = 1;
-                _delay((unsigned long)((2)*(4000000/4000.0)));
-                RD0 = 0;
-                _delay((unsigned long)((18)*(4000000/4000.0)));
+                servo_1_5();
             }
         }
         else if (ADCON0bits.CHS == 2){
             ADCON0bits.CHS = 3;
             pot3 = ADRESH;
             if (pot3<=50){
-                RD1 = 1;
-                _delay((unsigned long)((0.7)*(4000000/4000.0)));
-                RD1 = 0;
-                _delay((unsigned long)((19.3)*(4000000/4000.0)));
+                servo_2_1();
             }
             if ((pot3<=101) && (pot3>=51)){
-                RD1 = 1;
-                _delay((unsigned long)((1.25)*(4000000/4000.0)));
-                RD1 = 0;
-                _delay((unsigned long)((18.75)*(4000000/4000.0)));
+                servo_2_2();
             }
             if ((pot3<=152) && (pot3>=102)){
-                RD1 = 1;
-                _delay((unsigned long)((1.5)*(4000000/4000.0)));
-                RD1 = 0;
-                _delay((unsigned long)((18.5)*(4000000/4000.0)));
+                servo_2_3();
             }
             if ((pot3<=203) && (pot3>=153)){
-                RD1 = 1;
-                _delay((unsigned long)((1.75)*(4000000/4000.0)));
-                RD1 = 0;
-                _delay((unsigned long)((18.25)*(4000000/4000.0)));
+                servo_2_4();
             }
             if (pot3>=204){
-                RD1 = 1;
-                _delay((unsigned long)((2)*(4000000/4000.0)));
-                RD1 = 0;
-                _delay((unsigned long)((18)*(4000000/4000.0)));
+                servo_2_5();
             }
         }
 
@@ -2867,38 +2859,112 @@ void __attribute__((picinterrupt(("")))) isr(void){
             ADCON0bits.CHS = 0;
             pot4 = ADRESH;
             if (pot4<=50){
-                RD2 = 1;
-                _delay((unsigned long)((0.7)*(4000000/4000.0)));
-                RD2 = 0;
-                _delay((unsigned long)((19.3)*(4000000/4000.0)));
+                servo_3_1();
             }
             if ((pot4<=101) && (pot4>=51)){
-                RD2 = 1;
-                _delay((unsigned long)((1.25)*(4000000/4000.0)));
-                RD2 = 0;
-                _delay((unsigned long)((18.75)*(4000000/4000.0)));
+                servo_3_2();
             }
             if ((pot4<=152) && (pot4>=102)){
-                RD2 = 1;
-                _delay((unsigned long)((1.5)*(4000000/4000.0)));
-                RD2 = 0;
-                _delay((unsigned long)((18.5)*(4000000/4000.0)));
+                servo_3_3();
             }
             if ((pot4<=203) && (pot4>=153)){
-                RD2 = 1;
-                _delay((unsigned long)((1.75)*(4000000/4000.0)));
-                RD2 = 0;
-                _delay((unsigned long)((18.25)*(4000000/4000.0)));
+                servo_3_4();
             }
             if (pot4>=204){
-                RD2 = 1;
-                _delay((unsigned long)((2)*(4000000/4000.0)));
-                RD2 = 0;
-                _delay((unsigned long)((18)*(4000000/4000.0)));
+               servo_3_5();
             }
         }
         ADIF = 0;
         _delay((unsigned long)((100)*(4000000/4000000.0)));
+    }
+
+    if (RBIF == 1){
+        if (RB3 == 0){
+            RB6 = 0;
+            RB5 = 1;
+            escribir_eeprom(pot2, 0x16);
+            escribir_eeprom(pot3, 0x17);
+            escribir_eeprom(pot4, 0x18);
+            _delay((unsigned long)((500)*(4000000/4000.0)));
+            RB5 = 0;
+        }
+        if (RB4 == 0){
+
+
+            RB5 = 0;
+            RB6 = 1;
+            pot2_nuevo = leer_eeprom(0x16);
+            pot3_nuevo = leer_eeprom(0x17);
+            pot4_nuevo = leer_eeprom(0x18);
+            if (pot2_nuevo<=50){
+                servo_1_1();
+                pot2 = 30;
+            }
+            if ((pot2_nuevo<=101) && (pot2_nuevo>=51)){
+                servo_1_2();
+                pot2 = 70;
+            }
+            if ((pot2_nuevo<=152) && (pot2_nuevo>=102)){
+                servo_1_3();
+                pot2 = 130;
+            }
+            if ((pot2_nuevo<=203) && (pot2_nuevo>=153)){
+                servo_1_4();
+                pot2 = 170;
+            }
+            if (pot2_nuevo>=204){
+                servo_1_5();
+                pot2 = 205;
+            }
+            if (pot3_nuevo<=50){
+                servo_2_1();
+                pot3 = 30;
+            }
+            if ((pot3_nuevo<=101) && (pot3_nuevo>=51)){
+                servo_2_2();
+                pot3 = 70;
+            }
+            if ((pot3_nuevo<=152) && (pot3_nuevo>=102)){
+                servo_2_3();
+                pot3 = 110;
+            }
+            if ((pot3_nuevo<=203) && (pot3_nuevo>=153)){
+                servo_2_4();
+                pot3 = 170;
+            }
+            if (pot3_nuevo>=204){
+                servo_2_5();
+                pot3 = 205;
+            }
+            if (pot4_nuevo<=50){
+                servo_3_1();
+                pot4 = 30;
+            }
+            if ((pot4_nuevo<=101) && (pot4_nuevo>=51)){
+                servo_3_2();
+                pot4 = 70;
+            }
+            if ((pot4_nuevo<=152) && (pot4_nuevo>=102)){
+                servo_3_3();
+                pot4 = 130;
+            }
+            if ((pot4_nuevo<=203) && (pot4_nuevo>=153)){
+                servo_3_4();
+                pot4 = 170;
+            }
+            if (pot4_nuevo>=204){
+               servo_3_5();
+               pot4 = 205;
+            }
+        _delay((unsigned long)((2000)*(4000000/4000.0)));
+
+        RB6 = 0;
+        }
+        RBIF = 0;
+
+
+
+
     }
 
 }
@@ -2915,7 +2981,151 @@ void main(void){
 
 
 }
-# 226 "main_brazo.c"
+
+
+
+
+
+
+
+void escribir_eeprom(char data, char address){
+    EEADR = address;
+    EEDAT = data;
+
+    EECON1bits.EEPGD = 0;
+    EECON1bits.WREN = 1;
+
+    INTCONbits.GIE = 0;
+
+    EECON2 = 0x55;
+    EECON2 = 0xAA;
+
+    EECON1bits.WR = 1;
+
+    while(PIR2bits.EEIF == 0);
+    PIR2bits.EEIF = 0;
+
+    EECON1bits.WREN = 0;
+    INTCONbits.GIE = 0;
+
+}
+
+char leer_eeprom(char address){
+    EEADR = address;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD = 1;
+    char data = EEDATA;
+    return data;
+}
+
+void servo_1_1(void){
+    RD0 = 1;
+    _delay((unsigned long)((0.7)*(4000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((19.3)*(4000000/4000.0)));
+}
+
+void servo_1_2(void){
+    RD0 = 1;
+    _delay((unsigned long)((1.25)*(4000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((18.75)*(4000000/4000.0)));
+}
+
+void servo_1_3(void){
+    RD0 = 1;
+    _delay((unsigned long)((1.5)*(4000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((18.5)*(4000000/4000.0)));
+}
+
+void servo_1_4(void){
+    RD0 = 1;
+    _delay((unsigned long)((1.75)*(4000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((18.25)*(4000000/4000.0)));
+}
+
+void servo_1_5(void){
+    RD0 = 1;
+    _delay((unsigned long)((2)*(4000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((18)*(4000000/4000.0)));
+}
+
+void servo_2_1(void){
+    RD1 = 1;
+    _delay((unsigned long)((0.7)*(4000000/4000.0)));
+    RD1 = 0;
+    _delay((unsigned long)((19.3)*(4000000/4000.0)));
+}
+
+void servo_2_2(void){
+    RD1 = 1;
+    _delay((unsigned long)((1.25)*(4000000/4000.0)));
+    RD1 = 0;
+    _delay((unsigned long)((18.75)*(4000000/4000.0)));
+}
+
+void servo_2_3(void){
+    RD1 = 1;
+    _delay((unsigned long)((1.5)*(4000000/4000.0)));
+    RD1 = 0;
+    _delay((unsigned long)((18.5)*(4000000/4000.0)));
+}
+
+void servo_2_4(void){
+    RD1 = 1;
+    _delay((unsigned long)((1.75)*(4000000/4000.0)));
+    RD1 = 0;
+    _delay((unsigned long)((18.25)*(4000000/4000.0)));
+}
+
+void servo_2_5(void){
+    RD1 = 1;
+    _delay((unsigned long)((2)*(4000000/4000.0)));
+    RD1 = 0;
+    _delay((unsigned long)((18)*(4000000/4000.0)));
+}
+
+void servo_3_1(void){
+    RD2 = 1;
+    _delay((unsigned long)((0.7)*(4000000/4000.0)));
+    RD2 = 0;
+    _delay((unsigned long)((19.3)*(4000000/4000.0)));
+}
+
+void servo_3_2(void){
+    RD2 = 1;
+    _delay((unsigned long)((1.25)*(4000000/4000.0)));
+    RD2 = 0;
+    _delay((unsigned long)((18.75)*(4000000/4000.0)));
+}
+
+void servo_3_3(void){
+    RD2 = 1;
+    _delay((unsigned long)((1.5)*(4000000/4000.0)));
+    RD2 = 0;
+    _delay((unsigned long)((18.5)*(4000000/4000.0)));
+}
+
+void servo_3_4(void){
+    RD2 = 1;
+    _delay((unsigned long)((1.75)*(4000000/4000.0)));
+    RD2 = 0;
+    _delay((unsigned long)((18.25)*(4000000/4000.0)));
+}
+
+void servo_3_5(void){
+    RD2 = 1;
+    _delay((unsigned long)((2)*(4000000/4000.0)));
+    RD2 = 0;
+    _delay((unsigned long)((18)*(4000000/4000.0)));
+}
+
+
+
+
 void setup(void){
 
     TRISBbits.TRISB0 = 1;
@@ -3008,7 +3218,13 @@ void setup(void){
     PIR1bits.ADIF = 0;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-# 330 "main_brazo.c"
+# 521 "main_brazo.c"
+    IOCBbits.IOCB3 = 1;
+    IOCBbits.IOCB4 = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+
+
     PORTA = 0x00;
     PORTB = 0x00;
     PORTC = 0x00;

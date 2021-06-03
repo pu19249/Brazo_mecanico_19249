@@ -50,11 +50,32 @@
 char motor, direccion;
 char contador, valor;
 char pot2, pot3, pot4;
+char pot2_nuevo, pot3_nuevo, pot4_nuevo;
 /*==============================================================================
                                INTERRUPCIONES Y PROTOTIPOS
  =============================================================================*/
 void setup(void);
 void pwm(void);
+void servo_1_1(void);
+void servo_1_2(void);
+void servo_1_3(void);
+void servo_1_4(void);
+void servo_1_5(void);
+void servo_1_6(void);
+void servo_2_1(void);
+void servo_2_2(void);
+void servo_2_3(void);
+void servo_2_4(void);
+void servo_2_5(void);
+void servo_3_1(void);
+void servo_3_2(void);
+void servo_3_3(void);
+void servo_3_4(void);
+void servo_3_5(void);
+
+void escribir_eeprom(char data, char address);
+char leer_eeprom(char address);
+
 
 void __interrupt() isr(void){
     if (ADIF == 1){
@@ -86,68 +107,39 @@ void __interrupt() isr(void){
             ADCON0bits.CHS = 2;
             pot2 = ADRESH;
             if (pot2<=50){ //de 0 a 50 en el pot va a tener -90 grados
-                RD0 = 1;
-                __delay_ms(0.7);
-                RD0 = 0;
-                __delay_ms(19.3);
+                servo_1_1();
             }
             if ((pot2<=101) && (pot2>=51)){
-                RD0 = 1;
-                __delay_ms(1.25);
-                RD0 = 0;
-                __delay_ms(18.75);
+                servo_1_2();
+              
             }
             if ((pot2<=152) && (pot2>=102)){
-                RD0 = 1;
-                __delay_ms(1.5);
-                RD0 = 0;
-                __delay_ms(18.5);
+                servo_1_3();
             }
             if ((pot2<=203) && (pot2>=153)){
-                RD0 = 1;
-                __delay_ms(1.75);
-                RD0 = 0;
-                __delay_ms(18.25);
+                servo_1_4();
             }
             if (pot2>=204){
-                RD0 = 1;
-                __delay_ms(2);
-                RD0 = 0;
-                __delay_ms(18);
+                servo_1_5();
             }
         }
         else if (ADCON0bits.CHS == 2){
             ADCON0bits.CHS = 3;
             pot3 = ADRESH;
             if (pot3<=50){ //de 0 a 50 en el pot va a tener -90 grados
-                RD1 = 1;
-                __delay_ms(0.7);
-                RD1 = 0;
-                __delay_ms(19.3);
+                servo_2_1();
             }
             if ((pot3<=101) && (pot3>=51)){
-                RD1 = 1;
-                __delay_ms(1.25);
-                RD1 = 0;
-                __delay_ms(18.75);
+                servo_2_2();
             }
             if ((pot3<=152) && (pot3>=102)){
-                RD1 = 1;
-                __delay_ms(1.5);
-                RD1 = 0;
-                __delay_ms(18.5);
+                servo_2_3();
             }
             if ((pot3<=203) && (pot3>=153)){
-                RD1 = 1;
-                __delay_ms(1.75);
-                RD1 = 0;
-                __delay_ms(18.25);
+                servo_2_4();
             }
             if (pot3>=204){
-                RD1 = 1;
-                __delay_ms(2);
-                RD1 = 0;
-                __delay_ms(18);
+                servo_2_5();
             }
         }
         
@@ -155,38 +147,112 @@ void __interrupt() isr(void){
             ADCON0bits.CHS = 0;
             pot4 = ADRESH;
             if (pot4<=50){ //de 0 a 50 en el pot va a tener -90 grados
-                RD2 = 1;
-                __delay_ms(0.7);
-                RD2 = 0;
-                __delay_ms(19.3);
+                servo_3_1();
             }
             if ((pot4<=101) && (pot4>=51)){
-                RD2 = 1;
-                __delay_ms(1.25);
-                RD2 = 0;
-                __delay_ms(18.75);
+                servo_3_2();
             }
             if ((pot4<=152) && (pot4>=102)){
-                RD2 = 1;
-                __delay_ms(1.5);
-                RD2 = 0;
-                __delay_ms(18.5);
+                servo_3_3();
             }
             if ((pot4<=203) && (pot4>=153)){
-                RD2 = 1;
-                __delay_ms(1.75);
-                RD2 = 0;
-                __delay_ms(18.25);
+                servo_3_4();
             }
             if (pot4>=204){
-                RD2 = 1;
-                __delay_ms(2);
-                RD2 = 0;
-                __delay_ms(18);
+               servo_3_5();
             }
         }
         ADIF = 0;           //apaga la bandera
         __delay_us(100);
+    }
+    
+    if (RBIF == 1){ //alguno de los dos botones que tengo se presiono
+        if (RB3 == 0){ //porque es pull-up
+            RB6 = 0;
+            RB5 = 1;
+            escribir_eeprom(pot2, 0x16);
+            escribir_eeprom(pot3, 0x17);
+            escribir_eeprom(pot4, 0x18);
+            __delay_ms(500);
+            RB5 = 0;
+        }
+        if (RB4 == 0){
+            //ADCON0bits.GO = 0;
+            //ADCON0bits.ADON = 0;
+            RB5 = 0;
+            RB6 = 1;
+            pot2_nuevo = leer_eeprom(0x16);
+            pot3_nuevo = leer_eeprom(0x17);
+            pot4_nuevo = leer_eeprom(0x18);
+            if (pot2_nuevo<=50){ //de 0 a 50 en el pot va a tener -90 grados
+                servo_1_1();
+                pot2 = 30; //cargo manualmente el rango para que no haga
+            }
+            if ((pot2_nuevo<=101) && (pot2_nuevo>=51)){
+                servo_1_2();
+                pot2 = 70; //conflicto entre la posicion guardada
+            }
+            if ((pot2_nuevo<=152) && (pot2_nuevo>=102)){
+                servo_1_3();
+                pot2 = 130; //y la posicion actual del servo
+            }
+            if ((pot2_nuevo<=203) && (pot2_nuevo>=153)){
+                servo_1_4();
+                pot2 = 170;
+            }
+            if (pot2_nuevo>=204){
+                servo_1_5();
+                pot2 = 205;
+            }
+            if (pot3_nuevo<=50){ //de 0 a 50 en el pot va a tener -90 grados
+                servo_2_1();
+                pot3 = 30;
+            }
+            if ((pot3_nuevo<=101) && (pot3_nuevo>=51)){
+                servo_2_2();
+                pot3 = 70;
+            }
+            if ((pot3_nuevo<=152) && (pot3_nuevo>=102)){
+                servo_2_3();
+                pot3 = 110;
+            }
+            if ((pot3_nuevo<=203) && (pot3_nuevo>=153)){
+                servo_2_4();
+                pot3 = 170;
+            }
+            if (pot3_nuevo>=204){
+                servo_2_5();
+                pot3 = 205;                        
+            }
+            if (pot4_nuevo<=50){ //de 0 a 50 en el pot va a tener -90 grados
+                servo_3_1();
+                pot4 = 30;
+            }
+            if ((pot4_nuevo<=101) && (pot4_nuevo>=51)){
+                servo_3_2();
+                pot4 = 70;
+            }
+            if ((pot4_nuevo<=152) && (pot4_nuevo>=102)){
+                servo_3_3();
+                pot4 = 130;
+            }
+            if ((pot4_nuevo<=203) && (pot4_nuevo>=153)){
+                servo_3_4();
+                pot4 = 170;
+            }
+            if (pot4_nuevo>=204){
+               servo_3_5();
+               pot4 = 205;
+            }
+        __delay_ms(2000);
+        //ADCON0bits.GO = 1;
+        RB6 = 0;
+        }
+        RBIF = 0; //limpio la interrupcion para que salga de aqui
+        
+        //__delay_ms(100);
+        //ADCON0bits.ADON = 1;
+        
     }
 
 }
@@ -210,7 +276,140 @@ void main(void){
                                     FUNCIONES
  =============================================================================*/
 
+void escribir_eeprom(char data, char address){
+    EEADR = address;        //la direccion de memoria que voy a escribir
+    EEDAT = data;           //el valor que voy a escribir en la memoria
+    
+    EECON1bits.EEPGD = 0;   //apuntar a la DATA memory
+    EECON1bits.WREN = 1;    //habilita la escritura
+    
+    INTCONbits.GIE = 0;     //deshabilita las interrupciones globales
+    //rutina default
+    EECON2 = 0x55;          //por la secuencia de 1-0 que da este valor
+    EECON2 = 0xAA;          //y este en binario
+    
+    EECON1bits.WR = 1;      //inicia la escritura
+    
+    while(PIR2bits.EEIF == 0);  //Para que espere el final de la escritura
+    PIR2bits.EEIF = 0;          //vuelve a apagar la bandera
+    
+    EECON1bits.WREN = 0;        //Para asegurar que no se esta escribiendo
+    INTCONbits.GIE = 0;         //vuelve a habilitar las interrupciones globales
+    
+}
 
+char leer_eeprom(char address){
+    EEADR = address;            //el byte de la memoria que va a leer
+    EECON1bits.EEPGD = 0;       //apuntar a la PROGRAM memory
+    EECON1bits.RD = 1;          //se indica que es lectura
+    char data = EEDATA;         //guarda en la variable el dato
+    return data;                //la funcion regresa el char
+}
+
+void servo_1_1(void){           //rango de posicion 1 para el servo1
+    RD0 = 1;
+    __delay_ms(0.7);
+    RD0 = 0;
+    __delay_ms(19.3);
+}
+
+void servo_1_2(void){           //rango de posicion 2 para el servo1
+    RD0 = 1;
+    __delay_ms(1.25);
+    RD0 = 0;
+    __delay_ms(18.75);
+}
+
+void servo_1_3(void){           //rango de posicion 3 para el servo1
+    RD0 = 1;
+    __delay_ms(1.5);
+    RD0 = 0;
+    __delay_ms(18.5);
+}
+
+void servo_1_4(void){           //rango de posicion 4 para el servo1
+    RD0 = 1;
+    __delay_ms(1.75);
+    RD0 = 0;
+    __delay_ms(18.25);
+}
+
+void servo_1_5(void){           //rango de posicion 5 para el servo1
+    RD0 = 1;
+    __delay_ms(2);
+    RD0 = 0;
+    __delay_ms(18);
+}
+
+void servo_2_1(void){           //rango de posicion 1 para el servo2
+    RD1 = 1;
+    __delay_ms(0.7);
+    RD1 = 0;
+    __delay_ms(19.3);
+}
+
+void servo_2_2(void){           //rango de posicion 2 para el servo2
+    RD1 = 1;
+    __delay_ms(1.25);
+    RD1 = 0;
+    __delay_ms(18.75);
+}
+
+void servo_2_3(void){           //rango de posicion 3 para el servo2
+    RD1 = 1;
+    __delay_ms(1.5);
+    RD1 = 0;
+    __delay_ms(18.5);
+}
+
+void servo_2_4(void){           //rango de posicion 4 para el servo2
+    RD1 = 1;
+    __delay_ms(1.75);
+    RD1 = 0;
+    __delay_ms(18.25);
+}
+
+void servo_2_5(void){           //rango de posicion 5 para el servo2
+    RD1 = 1;
+    __delay_ms(2);
+    RD1 = 0;
+    __delay_ms(18);
+}
+
+void servo_3_1(void){           //rango de posicion 1 para el servo3
+    RD2 = 1;
+    __delay_ms(0.7);
+    RD2 = 0;
+    __delay_ms(19.3);
+}
+
+void servo_3_2(void){           //rango de posicion 2 para el servo3
+    RD2 = 1;
+    __delay_ms(1.25);
+    RD2 = 0;
+    __delay_ms(18.75);
+}
+
+void servo_3_3(void){           //rango de posicion 3 para el servo3
+    RD2 = 1;
+    __delay_ms(1.5);
+    RD2 = 0;
+    __delay_ms(18.5);
+}
+
+void servo_3_4(void){           //rango de posicion 4 para el servo3
+    RD2 = 1;
+    __delay_ms(1.75);
+    RD2 = 0;
+    __delay_ms(18.25);
+}
+
+void servo_3_5(void){           //rango de posicion 5 para el servo3
+    RD2 = 1;
+    __delay_ms(2);
+    RD2 = 0;
+    __delay_ms(18);
+}
 
 /*==============================================================================
                             CONFIGURACION DE PIC
@@ -317,6 +516,12 @@ void setup(void){
 //    OPTION_REGbits.PS1 = 1;
 //    OPTION_REGbits.PS2 = 0;
 //    TMR0 = 176;
+    
+    //Configuracion de interrupcion del puerto B
+    IOCBbits.IOCB3 = 1;     //Boton de escritura
+    IOCBbits.IOCB4 = 1;     //Boton de lectura
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;    //limpiar bandera de interrupcion
     
     //Limpiar puertos
     PORTA = 0x00;
