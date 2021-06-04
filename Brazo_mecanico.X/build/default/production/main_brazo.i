@@ -2977,15 +2977,16 @@ void __attribute__((picinterrupt(("")))) isr(void){
         _delay((unsigned long)((2000)*(4000000/4000.0)));
 
         RB6 = 0;
-        }
+    }
         if (RB7 == 0){
             pasar_a_uart = 1;
             while(pasar_a_uart == 1){
-            mensaje();
+
+                mensaje();
             }
-            if (RB7 == 0){
-                pasar_a_uart = 0;
-            }
+
+
+
         }
         RBIF = 0;
 
@@ -3196,116 +3197,125 @@ void mensaje(void){
         if (RCREG == 'a'){
             printf("\r Seleccione entre los siguiente para dar la posicion:");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 1: -45 ");
+            printf("\r q: -45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 2: -90 ");
+            printf("\r w: -90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 3: 0 ");
+            printf("\r e: 0 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 4: 90 ");
+            printf("\r r: 90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 5: 45 ");
+            printf("\r t: 45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            if (RCREG == '1'){
+            while (RCIF == 0);
+            if (RCREG == 'q'){
                 servo_1_1();
             }
-            if (RCREG == '2'){
+            if (RCREG == 'w'){
                 servo_1_2();
+
             }
-            if (RCREG == '3'){
+            if (RCREG == 'e'){
                 servo_1_3();
+
             }
-            if (RCREG == '4'){
+            if (RCREG == 'r'){
                 servo_1_4();
+
             }
-            if (RCREG == '5'){
+            if (RCREG == 't'){
                 servo_1_5();
+
             }
-            while (RCIF == 0);
+
         }
         if (RCREG == 'b'){
             printf("\r Seleccione entre los siguiente para dar la posicion:");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 1: -45 ");
+            printf("\r z: -45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 2: -90 ");
+            printf("\r x: -90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 3: 0 ");
+            printf("\r g: 0 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 4: 90 ");
+            printf("\r v: 90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 5: 45 ");
+            printf("\r b: 45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            if (RCREG == '1'){
+            while (RCIF == 0);
+            if (RCREG == 'z'){
                 servo_2_1();
             }
-            if (RCREG == '2'){
+            if (RCREG == 'x'){
                 servo_2_2();
             }
-            if (RCREG == '3'){
+            if (RCREG == 'g'){
                 servo_2_3();
             }
-            if (RCREG == '4'){
+            if (RCREG == 'v'){
                 servo_2_4();
             }
-            if (RCREG == '5'){
+            if (RCREG == 'b'){
                 servo_2_5();
             }
-            while (RCIF == 0);
+
         }
         if (RCREG == 'c'){
             printf("\r Seleccione entre los siguiente para dar la posicion:");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 1: -45 ");
+            printf("\r p: -45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 2: -90 ");
+            printf("\r o: -90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 3: 0 ");
+            printf("\r i: 0 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 4: 90 ");
+            printf("\r u: 90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r 5: 45 ");
+            printf("\r y: 45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            if (RCREG == '1'){
+            while (RCIF == 0);
+            if (RCREG == 'p'){
                 servo_3_1();
             }
-            if (RCREG == '2'){
+            if (RCREG == 'o'){
                 servo_3_2();
             }
-            if (RCREG == '3'){
+            if (RCREG == 'i'){
                 servo_3_3();
             }
-            if (RCREG == '4'){
+            if (RCREG == 'u'){
                 servo_3_4();
             }
-            if (RCREG == '5'){
+            if (RCREG == 'y'){
                 servo_3_5();
             }
-            while (RCIF == 0);
+
         }
     }
     if (RCREG == '2'){
         printf("\r Hacia donde desea mover el motor? \r");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r 1: Derecha");
+        printf("\r r: Derecha");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r 2: Izquierda");
+        printf("\r l: Izquierda");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r 3: Detener");
+        printf("\r s: Detener");
         _delay((unsigned long)((250)*(4000000/4000.0)));
         while (RCIF == 0);
-        if (RCREG == '1'){
+        if (RCREG == 'r'){
             motor_1();
         }
-        if (RCREG == '2'){
+        if (RCREG == 'l'){
             motor_2();
         }
-        if (RCREG == '3'){
+        if (RCREG == 's'){
             motor_detenido();
         }
     }
     if (RCREG == '3'){
         pasar_a_uart = 0;
+        printf("\r Ha finalizado la comunicacion UART");
+        _delay((unsigned long)((250)*(4000000/4000.0)));
     }
     else{
         (0);
@@ -3408,7 +3418,7 @@ void setup(void){
     PIR1bits.ADIF = 0;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-# 711 "main_brazo.c"
+# 721 "main_brazo.c"
     IOCBbits.IOCB3 = 1;
     IOCBbits.IOCB4 = 1;
     IOCBbits.IOCB7 = 1;

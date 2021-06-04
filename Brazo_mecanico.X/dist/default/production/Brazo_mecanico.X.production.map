@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Brazo_mecanico.X.production.sym \
   --cmf=dist/default/production\Brazo_mecanico.X.production.cmf -z -Q16F887 \
-  -oC:\Users\jpu20\AppData\Local\Temp\s1jk.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\jpu20\AppData\Local\Temp\sal0.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Brazo_mecanico.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\jpu20\AppData\Local\Temp\s1jk.o \
+  -pfunctab=ENTRY -k C:\Users\jpu20\AppData\Local\Temp\sal0.o \
   dist/default/production\Brazo_mecanico.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\jpu20\AppData\Local\Temp\s1jk.o
+C:\Users\jpu20\AppData\Local\Temp\sal0.o
                 end_init                             12       12        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -36,38 +36,38 @@ dist/default/production\Brazo_mecanico.X.production.o
                 cinit                                15       15       13        8       0
                 intentry                              4        4        E        8       0
                 config                             2007     2007        2        0       4
-                text26                              F56      F56       1D     1EAC       0
-                text25                              DC0      DC0       11     1B80       0
-                text24                              F99      F99       67     1F32       0
-                text23                              ED9      ED9       19     1DB2       0
-                text22                              EF2      EF2       19     1DE4       0
-                text21                              DA4      DA4        6     1B48       0
-                text20                              DAA      DAA        A     1B54       0
-                text19                              F73      F73       26     1EE6       0
-                text18                              DD1      DD1       13     1BA2       0
-                text17                              E4C      E4C       17     1C98       0
-                text16                              E0A      E0A       16     1C14       0
-                text15                              F0B      F0B       19     1E16       0
-                text14                              E91      E91       18     1D22       0
-                text13                              DE4      DE4       13     1BC8       0
-                text12                              E63      E63       17     1CC6       0
-                text11                              E20      E20       16     1C40       0
-                text10                              F24      F24       19     1E48       0
-                text9                               EA9      EA9       18     1D52       0
-                text8                               DF7      DF7       13     1BEE       0
-                text7                               E7A      E7A       17     1CF4       0
-                text6                               E36      E36       16     1C6C       0
-                text5                               F3D      F3D       19     1E7A       0
-                text4                               EC1      EC1       18     1D82       0
-                text3                                28       28      3C8        8       0
-                text2                               3F0      3F0      380        8       0
-                text1                               770      770       8D        8       0
-                maintext                            DB4      DB4        C     1B68       0
+                text26                              F30      F30       1D     1E60       0
+                text25                              DB2      DB2       11     1B64       0
+                text24                              781      781       67        8       0
+                text23                              EB3      EB3       19     1D66       0
+                text22                              ECC      ECC       19     1D98       0
+                text21                              D96      D96        6     1B2C       0
+                text20                              D9C      D9C        A     1B38       0
+                text19                              F4D      F4D       26     1E9A       0
+                text18                              DC3      DC3       13     1B86       0
+                text17                              E3E      E3E       17     1C7C       0
+                text16                              DFC      DFC       16     1BF8       0
+                text15                              EE5      EE5       19     1DCA       0
+                text14                              E83      E83       18     1D06       0
+                text13                              DD6      DD6       13     1BAC       0
+                text12                              E55      E55       17     1CAA       0
+                text11                              E12      E12       16     1C24       0
+                text10                              EFE      EFE       19     1DFC       0
+                text9                               E9B      E9B       18     1D36       0
+                text8                               DE9      DE9       13     1BD2       0
+                text7                               E6C      E6C       17     1CD8       0
+                text6                               E28      E28       16     1C50       0
+                text5                               F17      F17       19     1E2E       0
+                text4                               7E8      7E8       18        8       0
+                text3                                28       28      3DE        8       0
+                text2                               406      406      37B        8       0
+                text1                               F73      F73       8D     1EE6       0
+                maintext                            DA6      DA6        C     1B4C       0
                 cstackBANK0                          2D       2D        8       20       1
                 cstackCOMMON                         70       70        E       70       1
                 bssBANK0                             20       20        D       20       1
-                stringtext                          800      800      15B       10       0
-                strings                             95B      95B       12     12B6       0
+                stringtext                          800      800      1DC       10       0
+                strings                             9DC      9DC       12     13B8       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -77,39 +77,39 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                15       15       13         0
                 intentry                              4        4        E         0
                 reset_vec                             0        0        3         0
-                text26                              F56      F56       1D         0
-                text25                              DC0      DC0       11         0
-                text24                              F99      F99       67         0
-                text23                              ED9      ED9       19         0
-                text22                              EF2      EF2       19         0
-                text21                              DA4      DA4        6         0
-                text20                              DAA      DAA        A         0
-                text19                              F73      F73       26         0
-                text18                              DD1      DD1       13         0
-                text17                              E4C      E4C       17         0
-                text16                              E0A      E0A       16         0
-                text15                              F0B      F0B       19         0
-                text14                              E91      E91       18         0
-                text13                              DE4      DE4       13         0
-                text12                              E63      E63       17         0
-                text11                              E20      E20       16         0
-                text10                              F24      F24       19         0
-                text9                               EA9      EA9       18         0
-                text8                               DF7      DF7       13         0
-                text7                               E7A      E7A       17         0
-                text6                               E36      E36       16         0
-                text5                               F3D      F3D       19         0
-                text4                               EC1      EC1       18         0
-                text3                                28       28      3C8         0
-                text2                               3F0      3F0      380         0
-                text1                               770      770       8D         0
-                maintext                            DB4      DB4        C         0
+                text26                              F30      F30       1D         0
+                text25                              DB2      DB2       11         0
+                text24                              781      781       67         0
+                text23                              EB3      EB3       19         0
+                text22                              ECC      ECC       19         0
+                text21                              D96      D96        6         0
+                text20                              D9C      D9C        A         0
+                text19                              F4D      F4D       26         0
+                text18                              DC3      DC3       13         0
+                text17                              E3E      E3E       17         0
+                text16                              DFC      DFC       16         0
+                text15                              EE5      EE5       19         0
+                text14                              E83      E83       18         0
+                text13                              DD6      DD6       13         0
+                text12                              E55      E55       17         0
+                text11                              E12      E12       16         0
+                text10                              EFE      EFE       19         0
+                text9                               E9B      E9B       18         0
+                text8                               DE9      DE9       13         0
+                text7                               E6C      E6C       17         0
+                text6                               E28      E28       16         0
+                text5                               F17      F17       19         0
+                text4                               7E8      7E8       18         0
+                text3                                28       28      3DE         0
+                text2                               406      406      37B         0
+                text1                               F73      F73       8D         0
+                maintext                            DA6      DA6        C         0
 
         CLASS   STRCODE        
-                stringtext                          800      800      15B         0
+                stringtext                          800      800      1DC         0
 
         CLASS   STRING         
-                strings                             95B      95B       12         0
+                strings                             9DC      9DC       12         0
 
         CLASS   CONST          
 
@@ -153,35 +153,34 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  0007F9  0007FD         8       0  CODE        2
+                intentry                       000004  0007FC  000800         8       0  CODE        2
                 bssBANK0                       000020  000015  000035        20       1  BANK0       1
                 cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
-                stringtext                     000800  00015B  00095B        10       0  STRCODE     2
-                strings                        00095B  000012  00096D      12B6       0  STRING      2
-                text21                         000DA4  000006  000DAA      1B48       0  CODE        2
-                text20                         000DAA  00000A  000DB4      1B54       0  CODE        2
-                maintext                       000DB4  00000C  000DC0      1B68       0  CODE        2
-                text25                         000DC0  000011  000DD1      1B80       0  CODE        2
-                text18                         000DD1  000013  000DE4      1BA2       0  CODE        2
-                text13                         000DE4  000013  000DF7      1BC8       0  CODE        2
-                text8                          000DF7  000013  000E0A      1BEE       0  CODE        2
-                text16                         000E0A  000016  000E20      1C14       0  CODE        2
-                text11                         000E20  000016  000E36      1C40       0  CODE        2
-                text6                          000E36  000016  000E4C      1C6C       0  CODE        2
-                text17                         000E4C  000017  000E63      1C98       0  CODE        2
-                text12                         000E63  000017  000E7A      1CC6       0  CODE        2
-                text7                          000E7A  000017  000E91      1CF4       0  CODE        2
-                text14                         000E91  000018  000EA9      1D22       0  CODE        2
-                text9                          000EA9  000018  000EC1      1D52       0  CODE        2
-                text4                          000EC1  000018  000ED9      1D82       0  CODE        2
-                text23                         000ED9  000019  000EF2      1DB2       0  CODE        2
-                text22                         000EF2  000019  000F0B      1DE4       0  CODE        2
-                text15                         000F0B  000019  000F24      1E16       0  CODE        2
-                text10                         000F24  000019  000F3D      1E48       0  CODE        2
-                text5                          000F3D  000019  000F56      1E7A       0  CODE        2
-                text26                         000F56  00001D  000F73      1EAC       0  CODE        2
-                text19                         000F73  000026  000F99      1EE6       0  CODE        2
-                text24                         000F99  000067  001000      1F32       0  CODE        2
+                stringtext                     000800  0001DC  0009DC        10       0  STRCODE     2
+                strings                        0009DC  000012  0009EE      13B8       0  STRING      2
+                text21                         000D96  000006  000D9C      1B2C       0  CODE        2
+                text20                         000D9C  00000A  000DA6      1B38       0  CODE        2
+                maintext                       000DA6  00000C  000DB2      1B4C       0  CODE        2
+                text25                         000DB2  000011  000DC3      1B64       0  CODE        2
+                text18                         000DC3  000013  000DD6      1B86       0  CODE        2
+                text13                         000DD6  000013  000DE9      1BAC       0  CODE        2
+                text8                          000DE9  000013  000DFC      1BD2       0  CODE        2
+                text16                         000DFC  000016  000E12      1BF8       0  CODE        2
+                text11                         000E12  000016  000E28      1C24       0  CODE        2
+                text6                          000E28  000016  000E3E      1C50       0  CODE        2
+                text17                         000E3E  000017  000E55      1C7C       0  CODE        2
+                text12                         000E55  000017  000E6C      1CAA       0  CODE        2
+                text7                          000E6C  000017  000E83      1CD8       0  CODE        2
+                text14                         000E83  000018  000E9B      1D06       0  CODE        2
+                text9                          000E9B  000018  000EB3      1D36       0  CODE        2
+                text23                         000EB3  000019  000ECC      1D66       0  CODE        2
+                text22                         000ECC  000019  000EE5      1D98       0  CODE        2
+                text15                         000EE5  000019  000EFE      1DCA       0  CODE        2
+                text10                         000EFE  000019  000F17      1DFC       0  CODE        2
+                text5                          000F17  000019  000F30      1E2E       0  CODE        2
+                text26                         000F30  00001D  000F4D      1E60       0  CODE        2
+                text19                         000F4D  000026  000F73      1E9A       0  CODE        2
+                text1                          000F73  00008D  001000      1EE6       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -192,17 +191,14 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         07FD-07FF              3
-                         096D-0DA3            437
+                         09EE-0D95            3A8
                          1000-1FFF            800
         CONST            0003-0003              1           2
-                         07FD-07FF              3
-                         096D-0DA3            100
+                         09EE-0D95            100
                          1000-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         07FD-07FF              3
-                         096D-0DA3            100
+                         09EE-0D95            100
                          1000-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0035-006F             3B           1
@@ -215,12 +211,10 @@ UNUSED ADDRESS RANGES
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
         STRCODE          0003-0003              1           2
-                         07FD-07FF              3
-                         096D-0DA3            437
+                         09EE-0D95            3A8
                          1000-1FFF           1000
         STRING           0003-0003              1           2
-                         07FD-07FF              3
-                         096D-0DA3            100
+                         09EE-0D95            100
                          1000-1FFF            100
 
                                   Symbol Table
@@ -360,7 +354,7 @@ __S0                      (abs)        1000
 __S1                      (abs)        007E
 __S2                      (abs)        0000
 __S3                      (abs)        0000
-___awdiv                  text24       0F99
+___awdiv                  text24       0781
 ___awdiv@counter          cstackCOMMON 0075
 ___awdiv@dividend         cstackCOMMON 0072
 ___awdiv@divisor          cstackCOMMON 0070
@@ -371,69 +365,69 @@ ___latbits                (abs)        0002
 ___sp                     stack        0000
 ___stackhi                (abs)        0000
 ___stacklo                (abs)        0000
-__end_of___awdiv          text24       1000
+__end_of___awdiv          text24       07E8
 __end_of__initialization  cinit        0024
-__end_of__stringtab       strings      096D
-__end_of_escribir_eeprom  text26       0F73
-__end_of_isr              text2        0770
-__end_of_leer_eeprom      text25       0DD1
-__end_of_main             maintext     0DC0
-__end_of_mensaje          text3        03F0
-__end_of_motor_1          text23       0EF2
-__end_of_motor_2          text22       0F0B
-__end_of_motor_detenido   text21       0DAA
-__end_of_printf           text19       0F99
-__end_of_putch            text20       0DB4
-__end_of_servo_1_1        text18       0DE4
-__end_of_servo_1_2        text17       0E63
-__end_of_servo_1_3        text16       0E20
-__end_of_servo_1_4        text15       0F24
-__end_of_servo_1_5        text14       0EA9
-__end_of_servo_2_1        text13       0DF7
-__end_of_servo_2_2        text12       0E7A
-__end_of_servo_2_3        text11       0E36
-__end_of_servo_2_4        text10       0F3D
-__end_of_servo_2_5        text9        0EC1
-__end_of_servo_3_1        text8        0E0A
-__end_of_servo_3_2        text7        0E91
-__end_of_servo_3_3        text6        0E4C
-__end_of_servo_3_4        text5        0F56
-__end_of_servo_3_5        text4        0ED9
-__end_of_setup            text1        07FD
+__end_of__stringtab       strings      09EE
+__end_of_escribir_eeprom  text26       0F4D
+__end_of_isr              text2        0781
+__end_of_leer_eeprom      text25       0DC3
+__end_of_main             maintext     0DB2
+__end_of_mensaje          text3        0406
+__end_of_motor_1          text23       0ECC
+__end_of_motor_2          text22       0EE5
+__end_of_motor_detenido   text21       0D9C
+__end_of_printf           text19       0F73
+__end_of_putch            text20       0DA6
+__end_of_servo_1_1        text18       0DD6
+__end_of_servo_1_2        text17       0E55
+__end_of_servo_1_3        text16       0E12
+__end_of_servo_1_4        text15       0EFE
+__end_of_servo_1_5        text14       0E9B
+__end_of_servo_2_1        text13       0DE9
+__end_of_servo_2_2        text12       0E6C
+__end_of_servo_2_3        text11       0E28
+__end_of_servo_2_4        text10       0F17
+__end_of_servo_2_5        text9        0EB3
+__end_of_servo_3_1        text8        0DFC
+__end_of_servo_3_2        text7        0E83
+__end_of_servo_3_3        text6        0E3E
+__end_of_servo_3_4        text5        0F30
+__end_of_servo_3_5        text4        0800
+__end_of_setup            text1        1000
 __initialization          cinit        0015
 __pbssBANK0               bssBANK0     0020
 __pcstackBANK0            cstackBANK0  002D
 __pcstackCOMMON           cstackCOMMON 0070
 __pintentry               intentry     0004
-__pmaintext               maintext     0DB4
-__pstrings                strings      095B
+__pmaintext               maintext     0DA6
+__pstrings                strings      09DC
 __pstringtext             stringtext   0800
-__ptext1                  text1        0770
-__ptext10                 text10       0F24
-__ptext11                 text11       0E20
-__ptext12                 text12       0E63
-__ptext13                 text13       0DE4
-__ptext14                 text14       0E91
-__ptext15                 text15       0F0B
-__ptext16                 text16       0E0A
-__ptext17                 text17       0E4C
-__ptext18                 text18       0DD1
-__ptext19                 text19       0F73
-__ptext2                  text2        03F0
-__ptext20                 text20       0DAA
-__ptext21                 text21       0DA4
-__ptext22                 text22       0EF2
-__ptext23                 text23       0ED9
-__ptext24                 text24       0F99
-__ptext25                 text25       0DC0
-__ptext26                 text26       0F56
+__ptext1                  text1        0F73
+__ptext10                 text10       0EFE
+__ptext11                 text11       0E12
+__ptext12                 text12       0E55
+__ptext13                 text13       0DD6
+__ptext14                 text14       0E83
+__ptext15                 text15       0EE5
+__ptext16                 text16       0DFC
+__ptext17                 text17       0E3E
+__ptext18                 text18       0DC3
+__ptext19                 text19       0F4D
+__ptext2                  text2        0406
+__ptext20                 text20       0D9C
+__ptext21                 text21       0D96
+__ptext22                 text22       0ECC
+__ptext23                 text23       0EB3
+__ptext24                 text24       0781
+__ptext25                 text25       0DB2
+__ptext26                 text26       0F30
 __ptext3                  text3        0028
-__ptext4                  text4        0EC1
-__ptext5                  text5        0F3D
-__ptext6                  text6        0E36
-__ptext7                  text7        0E7A
-__ptext8                  text8        0DF7
-__ptext9                  text9        0EA9
+__ptext4                  text4        07E8
+__ptext5                  text5        0F17
+__ptext6                  text6        0E28
+__ptext7                  text7        0E6C
+__ptext8                  text8        0DE9
+__ptext9                  text9        0E9B
 __size_of___awdiv         (abs)        0000
 __size_of_escribir_eeprom (abs)        0000
 __size_of_isr             (abs)        0000
@@ -461,18 +455,18 @@ __size_of_servo_3_3       (abs)        0000
 __size_of_servo_3_4       (abs)        0000
 __size_of_servo_3_5       (abs)        0000
 __size_of_setup           (abs)        0000
-__stringbase              strings      096D
-__stringtab               strings      095B
-_escribir_eeprom          text26       0F56
+__stringbase              strings      09EE
+__stringtab               strings      09DC
+_escribir_eeprom          text26       0F30
 _estado_motor             bssBANK0     0022
 _estado_motor_nuevo       bssBANK0     0021
-_isr                      text2        03F0
-_leer_eeprom              text25       0DC0
-_main                     maintext     0DB4
+_isr                      text2        0406
+_leer_eeprom              text25       0DB2
+_main                     maintext     0DA6
 _mensaje                  text3        0028
-_motor_1                  text23       0ED9
-_motor_2                  text22       0EF2
-_motor_detenido           text21       0DA4
+_motor_1                  text23       0EB3
+_motor_2                  text22       0ECC
+_motor_detenido           text21       0D96
 _pasar_a_uart             bssBANK0     0020
 _pot2                     bssBANK0     0028
 _pot2_nuevo               bssBANK0     0025
@@ -480,24 +474,24 @@ _pot3                     bssBANK0     0027
 _pot3_nuevo               bssBANK0     0024
 _pot4                     bssBANK0     0026
 _pot4_nuevo               bssBANK0     0023
-_printf                   text19       0F73
-_putch                    text20       0DAA
-_servo_1_1                text18       0DD1
-_servo_1_2                text17       0E4C
-_servo_1_3                text16       0E0A
-_servo_1_4                text15       0F0B
-_servo_1_5                text14       0E91
-_servo_2_1                text13       0DE4
-_servo_2_2                text12       0E63
-_servo_2_3                text11       0E20
-_servo_2_4                text10       0F24
-_servo_2_5                text9        0EA9
-_servo_3_1                text8        0DF7
-_servo_3_2                text7        0E7A
-_servo_3_3                text6        0E36
-_servo_3_4                text5        0F3D
-_servo_3_5                text4        0EC1
-_setup                    text1        0770
+_printf                   text19       0F4D
+_putch                    text20       0D9C
+_servo_1_1                text18       0DC3
+_servo_1_2                text17       0E3E
+_servo_1_3                text16       0DFC
+_servo_1_4                text15       0EE5
+_servo_1_5                text14       0E83
+_servo_2_1                text13       0DD6
+_servo_2_2                text12       0E55
+_servo_2_3                text11       0E12
+_servo_2_4                text10       0EFE
+_servo_2_5                text9        0E9B
+_servo_3_1                text8        0DE9
+_servo_3_2                text7        0E6C
+_servo_3_3                text6        0E28
+_servo_3_4                text5        0F17
+_servo_3_5                text4        07E8
+_setup                    text1        0F73
 btemp                     (abs)        007E
 end_of_initialization     cinit        0024
 escribir_eeprom@address   cstackCOMMON 0070
@@ -526,7 +520,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 289 in file "main_brazo.c"
+		line 290 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -555,7 +549,7 @@ Total ram usage:        0 bytes
 
  *************** function _setup *****************
  Defined at:
-		line 607 in file "main_brazo.c"
+		line 617 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -635,7 +629,7 @@ Total ram usage:        7 bytes
 
  *************** function _mensaje *****************
  Defined at:
-		line 464 in file "main_brazo.c"
+		line 465 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -683,7 +677,7 @@ Total ram usage:        3 bytes
 
  *************** function _servo_3_5 *****************
  Defined at:
-		line 433 in file "main_brazo.c"
+		line 434 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -713,7 +707,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_3_4 *****************
  Defined at:
-		line 426 in file "main_brazo.c"
+		line 427 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -743,7 +737,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_3_3 *****************
  Defined at:
-		line 419 in file "main_brazo.c"
+		line 420 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -773,7 +767,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_3_2 *****************
  Defined at:
-		line 412 in file "main_brazo.c"
+		line 413 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -803,7 +797,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_3_1 *****************
  Defined at:
-		line 405 in file "main_brazo.c"
+		line 406 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -833,7 +827,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_5 *****************
  Defined at:
-		line 398 in file "main_brazo.c"
+		line 399 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -863,7 +857,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_4 *****************
  Defined at:
-		line 391 in file "main_brazo.c"
+		line 392 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -893,7 +887,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_3 *****************
  Defined at:
-		line 384 in file "main_brazo.c"
+		line 385 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -923,7 +917,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_2 *****************
  Defined at:
-		line 377 in file "main_brazo.c"
+		line 378 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -953,7 +947,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_1 *****************
  Defined at:
-		line 370 in file "main_brazo.c"
+		line 371 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -983,7 +977,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_5 *****************
  Defined at:
-		line 363 in file "main_brazo.c"
+		line 364 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1013,7 +1007,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_4 *****************
  Defined at:
-		line 356 in file "main_brazo.c"
+		line 357 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1043,7 +1037,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_3 *****************
  Defined at:
-		line 349 in file "main_brazo.c"
+		line 350 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1073,7 +1067,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_2 *****************
  Defined at:
-		line 342 in file "main_brazo.c"
+		line 343 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1103,7 +1097,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_1 *****************
  Defined at:
-		line 335 in file "main_brazo.c"
+		line 336 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1136,14 +1130,14 @@ Total ram usage:        2 bytes
 		line 477 in file "C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c"
  Parameters:    Size  Location     Type
   f               2    1[COMMON] PTR const unsigned char 
-		 -> STR_30(13), STR_29(15), STR_28(13), STR_27(38), 
-		 -> STR_26(9), STR_25(9), STR_24(8), STR_23(10), 
-		 -> STR_22(10), STR_21(55), STR_20(9), STR_19(9), 
-		 -> STR_18(8), STR_17(10), STR_16(10), STR_15(55), 
-		 -> STR_14(9), STR_13(9), STR_12(8), STR_11(10), 
-		 -> STR_10(10), STR_9(55), STR_8(13), STR_7(13), 
-		 -> STR_6(13), STR_5(35), STR_4(26), STR_3(18), 
-		 -> STR_2(19), STR_1(30), 
+		 -> STR_31(37), STR_30(13), STR_29(15), STR_28(13), 
+		 -> STR_27(38), STR_26(9), STR_25(9), STR_24(8), 
+		 -> STR_23(10), STR_22(10), STR_21(55), STR_20(9), 
+		 -> STR_19(9), STR_18(8), STR_17(10), STR_16(10), 
+		 -> STR_15(55), STR_14(9), STR_13(9), STR_12(8), 
+		 -> STR_11(10), STR_10(10), STR_9(55), STR_8(13), 
+		 -> STR_7(13), STR_6(13), STR_5(35), STR_4(26), 
+		 -> STR_3(18), STR_2(19), STR_1(30), 
  Auto vars:     Size  Location     Type
   tmpval          4    0        struct .
   cp              2    0        PTR const unsigned char 
@@ -1179,7 +1173,7 @@ Total ram usage:        7 bytes
 
  *************** function _putch *****************
  Defined at:
-		line 458 in file "main_brazo.c"
+		line 459 in file "main_brazo.c"
  Parameters:    Size  Location     Type
   dato            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1208,7 +1202,7 @@ Total ram usage:        1 bytes
 
  *************** function _motor_detenido *****************
  Defined at:
-		line 440 in file "main_brazo.c"
+		line 441 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1238,7 +1232,7 @@ Total ram usage:        0 bytes
 
  *************** function _motor_2 *****************
  Defined at:
-		line 452 in file "main_brazo.c"
+		line 453 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1269,7 +1263,7 @@ Total ram usage:        2 bytes
 
  *************** function _motor_1 *****************
  Defined at:
-		line 446 in file "main_brazo.c"
+		line 447 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1333,7 +1327,7 @@ Total ram usage:        9 bytes
 
  *************** function _leer_eeprom *****************
  Defined at:
-		line 327 in file "main_brazo.c"
+		line 328 in file "main_brazo.c"
  Parameters:    Size  Location     Type
   address         1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1363,7 +1357,7 @@ Total ram usage:        3 bytes
 
  *************** function _escribir_eeprom *****************
  Defined at:
-		line 305 in file "main_brazo.c"
+		line 306 in file "main_brazo.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
   address         1    0[COMMON] unsigned char 
@@ -1396,46 +1390,46 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
-		_printf        		CODE           	0F73	0000	38
+		_printf        		CODE           	0F4D	0000	38
 
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c estimated size: 38
 
 main_brazo.c
-		_servo_1_1     		CODE           	0DD1	0000	19
-		_servo_1_2     		CODE           	0E4C	0000	23
-		_servo_1_3     		CODE           	0E0A	0000	22
-		_servo_1_4     		CODE           	0F0B	0000	25
-		_servo_1_5     		CODE           	0E91	0000	24
-		_leer_eeprom   		CODE           	0DC0	0000	17
-		_motor_1       		CODE           	0ED9	0000	25
-		_putch         		CODE           	0DAA	0000	10
-		_escribir_eeprom		CODE           	0F56	0000	29
-		_main          		CODE           	0DB4	0000	12
-		_servo_3_1     		CODE           	0DF7	0000	19
-		_servo_3_2     		CODE           	0E7A	0000	23
-		_servo_3_3     		CODE           	0E36	0000	22
-		_servo_3_4     		CODE           	0F3D	0000	25
-		_servo_3_5     		CODE           	0EC1	0000	24
-		_motor_detenido		CODE           	0DA4	0000	6
-		_isr           		CODE           	03F0	0000	896
-		_mensaje       		CODE           	0028	0000	968
-		_servo_2_1     		CODE           	0DE4	0000	19
-		_servo_2_2     		CODE           	0E63	0000	23
-		_servo_2_3     		CODE           	0E20	0000	22
-		_servo_2_4     		CODE           	0F24	0000	25
-		_servo_2_5     		CODE           	0EA9	0000	24
-		_setup         		CODE           	0770	0000	141
-		_motor_2       		CODE           	0EF2	0000	25
+		_servo_1_1     		CODE           	0DC3	0000	19
+		_servo_1_2     		CODE           	0E3E	0000	23
+		_servo_1_3     		CODE           	0DFC	0000	22
+		_servo_1_4     		CODE           	0EE5	0000	25
+		_servo_1_5     		CODE           	0E83	0000	24
+		_leer_eeprom   		CODE           	0DB2	0000	17
+		_motor_1       		CODE           	0EB3	0000	25
+		_putch         		CODE           	0D9C	0000	10
+		_escribir_eeprom		CODE           	0F30	0000	29
+		_main          		CODE           	0DA6	0000	12
+		_servo_3_1     		CODE           	0DE9	0000	19
+		_servo_3_2     		CODE           	0E6C	0000	23
+		_servo_3_3     		CODE           	0E28	0000	22
+		_servo_3_4     		CODE           	0F17	0000	25
+		_servo_3_5     		CODE           	07E8	0000	24
+		_motor_detenido		CODE           	0D96	0000	6
+		_isr           		CODE           	0406	0000	891
+		_mensaje       		CODE           	0028	0000	990
+		_servo_2_1     		CODE           	0DD6	0000	19
+		_servo_2_2     		CODE           	0E55	0000	23
+		_servo_2_3     		CODE           	0E12	0000	22
+		_servo_2_4     		CODE           	0EFE	0000	25
+		_servo_2_5     		CODE           	0E9B	0000	24
+		_setup         		CODE           	0F73	0000	141
+		_motor_2       		CODE           	0ECC	0000	25
 
-main_brazo.c estimated size: 2468
+main_brazo.c estimated size: 2485
 
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-		___awdiv       		CODE           	0F99	0000	103
+		___awdiv       		CODE           	0781	0000	103
 
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c estimated size: 103
 
 shared
-		__stringtab    		STRING         	095B	0000	18
+		__stringtab    		STRING         	09DC	0000	18
 		__initialization		CODE           	0015	0000	15
 
 shared estimated size: 33

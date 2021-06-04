@@ -265,15 +265,16 @@ void __interrupt() isr(void){
         __delay_ms(2000);
         //ADCON0bits.GO = 1;
         RB6 = 0;
-        }
+    }
         if (RB7 == 0){
             pasar_a_uart = 1;
             while(pasar_a_uart == 1){
-            mensaje();
+          
+                mensaje();
             }
-            if (RB7 == 0){ //si se volvio a presionar el boton
-                pasar_a_uart = 0; //que salga de modo uart
-            }
+//            if (RB7 == 0){ //si se volvio a presionar el boton
+//                pasar_a_uart = 0; //que salga de modo uart
+//            }
         }
         RBIF = 0; //limpio la interrupcion para que salga de aqui
         
@@ -484,116 +485,125 @@ void mensaje(void){
         if (RCREG == 'a'){
             printf("\r Seleccione entre los siguiente para dar la posicion:");
             __delay_ms(250);
-            printf("\r 1: -45 ");
+            printf("\r q: -45 ");
             __delay_ms(250);
-            printf("\r 2: -90 ");
+            printf("\r w: -90 ");
             __delay_ms(250);
-            printf("\r 3: 0 ");
+            printf("\r e: 0 ");
             __delay_ms(250);
-            printf("\r 4: 90 ");
+            printf("\r r: 90 ");
             __delay_ms(250);
-            printf("\r 5: 45 ");
+            printf("\r t: 45 ");
             __delay_ms(250);
-            if (RCREG == '1'){
-                servo_1_1();
-            }
-            if (RCREG == '2'){
-                servo_1_2();
-            }
-            if (RCREG == '3'){
-                servo_1_3();
-            }
-            if (RCREG == '4'){
-                servo_1_4();
-            }
-            if (RCREG == '5'){
-                servo_1_5();
-            }
             while (RCIF == 0);
+            if (RCREG == 'q'){
+                servo_1_1();                                  
+            }
+            if (RCREG == 'w'){
+                servo_1_2();
+                
+            }
+            if (RCREG == 'e'){
+                servo_1_3();
+                
+            }
+            if (RCREG == 'r'){
+                servo_1_4();
+                
+            }
+            if (RCREG == 't'){
+                servo_1_5();
+                
+            }
+            //while (RCIF == 0);
         }
         if (RCREG == 'b'){
             printf("\r Seleccione entre los siguiente para dar la posicion:");
             __delay_ms(250);
-            printf("\r 1: -45 ");
+            printf("\r z: -45 ");
             __delay_ms(250);
-            printf("\r 2: -90 ");
+            printf("\r x: -90 ");
             __delay_ms(250);
-            printf("\r 3: 0 ");
+            printf("\r g: 0 ");
             __delay_ms(250);
-            printf("\r 4: 90 ");
+            printf("\r v: 90 ");
             __delay_ms(250);
-            printf("\r 5: 45 ");
+            printf("\r b: 45 ");
             __delay_ms(250);
-            if (RCREG == '1'){
+            while (RCIF == 0);
+            if (RCREG == 'z'){
                 servo_2_1();
             }
-            if (RCREG == '2'){
+            if (RCREG == 'x'){
                 servo_2_2();
             }
-            if (RCREG == '3'){
+            if (RCREG == 'g'){
                 servo_2_3();
             }
-            if (RCREG == '4'){
+            if (RCREG == 'v'){
                 servo_2_4();
             }
-            if (RCREG == '5'){
+            if (RCREG == 'b'){
                 servo_2_5();
             }
-            while (RCIF == 0);
+            //while (RCIF == 0);
         }
         if (RCREG == 'c'){
             printf("\r Seleccione entre los siguiente para dar la posicion:");
             __delay_ms(250);
-            printf("\r 1: -45 ");
+            printf("\r p: -45 ");
             __delay_ms(250);
-            printf("\r 2: -90 ");
+            printf("\r o: -90 ");
             __delay_ms(250);
-            printf("\r 3: 0 ");
+            printf("\r i: 0 ");
             __delay_ms(250);
-            printf("\r 4: 90 ");
+            printf("\r u: 90 ");
             __delay_ms(250);
-            printf("\r 5: 45 ");
+            printf("\r y: 45 ");
             __delay_ms(250);
-            if (RCREG == '1'){
+            while (RCIF == 0);
+            if (RCREG == 'p'){
                 servo_3_1();
             }
-            if (RCREG == '2'){
+            if (RCREG == 'o'){
                 servo_3_2();
             }
-            if (RCREG == '3'){
+            if (RCREG == 'i'){
                 servo_3_3();
             }
-            if (RCREG == '4'){
+            if (RCREG == 'u'){
                 servo_3_4();
             }
-            if (RCREG == '5'){
+            if (RCREG == 'y'){
                 servo_3_5();
             }
-            while (RCIF == 0);
+            //while (RCIF == 0);
         }
     }
     if (RCREG == '2'){ //segunda opcion del menu
         printf("\r Hacia donde desea mover el motor? \r");
         __delay_ms(250);
-        printf("\r 1: Derecha");
+        printf("\r r: Derecha");
         __delay_ms(250);
-        printf("\r 2: Izquierda");
+        printf("\r l: Izquierda");
         __delay_ms(250);
-        printf("\r 3: Detener");
+        printf("\r s: Detener");
         __delay_ms(250);
         while (RCIF == 0);
-        if (RCREG == '1'){
+        if (RCREG == 'r'){
             motor_1();
         }
-        if (RCREG == '2'){
+        if (RCREG == 'l'){
             motor_2();
         }
-        if (RCREG == '3'){
+        if (RCREG == 's'){
             motor_detenido();
         }
     }
     if (RCREG == '3'){ //tercera opcion del menu
         pasar_a_uart = 0;
+        printf("\r Ha finalizado la comunicacion UART");
+        __delay_ms(250);
     }
     else{ //cualquier otra opcion que no este en el menu
         NULL;
