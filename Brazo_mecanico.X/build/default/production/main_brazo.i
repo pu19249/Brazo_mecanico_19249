@@ -2884,6 +2884,7 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
     if (RBIF == 1){
         if (RB3 == 0){
+
             RB6 = 0;
             RB5 = 1;
             escribir_eeprom(pot2, 0x16);
@@ -2894,7 +2895,6 @@ void __attribute__((picinterrupt(("")))) isr(void){
             RB5 = 0;
         }
         if (RB4 == 0){
-
 
             RB5 = 0;
             RB6 = 1;
@@ -2981,17 +2981,10 @@ void __attribute__((picinterrupt(("")))) isr(void){
         if (RB7 == 0){
             pasar_a_uart = 1;
             while(pasar_a_uart == 1){
-
                 mensaje();
             }
-
-
-
         }
         RBIF = 0;
-
-
-
 
     }
 
@@ -3003,12 +2996,8 @@ void main(void){
     setup();
 
     while(1){
-
         ADCON0bits.GO = 1;
-
         }
-
-
 }
 
 
@@ -3176,36 +3165,36 @@ void putch(char dato){
 
 void mensaje(void){
     _delay((unsigned long)((500)*(4000000/4000.0)));
-    printf("\r Que accion desea ejecutar \r");
+    printf("\n Que accion desea ejecutar \n");
     _delay((unsigned long)((250)*(4000000/4000.0)));
-    printf("(1) Mover servos \r");
+    printf("(1) Mover servos \n");
     _delay((unsigned long)((250)*(4000000/4000.0)));
-    printf("(2) Mover motor \r");
+    printf("(2) Mover motor \n");
     _delay((unsigned long)((250)*(4000000/4000.0)));
-    printf("(3) Salir del modo UART \r");
+    printf("(3) Salir del modo UART \n");
     while (RCIF == 0);
     if (RCREG == '1'){
         _delay((unsigned long)((500)*(4000000/4000.0)));
-        printf("\r Cual de los servos desea mover?\r");
+        printf("\n Cual de los servos desea mover?\n");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r a. Servo 1");
+        printf("\n a. Servo 1");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r b. Servo 2");
+        printf("\n b. Servo 2");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r c. Servo 3");
+        printf("\n c. Servo 3");
         while (RCIF == 0);
         if (RCREG == 'a'){
-            printf("\r Seleccione entre los siguiente para dar la posicion:");
+            printf("\n Seleccione entre los siguiente para dar la posicion:");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r q: -45 ");
+            printf("\n q: -90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r w: -90 ");
+            printf("\n w: -45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r e: 0 ");
+            printf("\n e: 0 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r r: 90 ");
+            printf("\n r: 45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r t: 45 ");
+            printf("\n t: 90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
             while (RCIF == 0);
             if (RCREG == 'q'){
@@ -3230,17 +3219,17 @@ void mensaje(void){
 
         }
         if (RCREG == 'b'){
-            printf("\r Seleccione entre los siguiente para dar la posicion:");
+            printf("\n Seleccione entre los siguiente para dar la posicion:");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r z: -45 ");
+            printf("\n z: -45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r x: -90 ");
+            printf("\n x: -90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r g: 0 ");
+            printf("\n g: 0 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r v: 90 ");
+            printf("\n v: 90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r b: 45 ");
+            printf("\n b: 45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
             while (RCIF == 0);
             if (RCREG == 'z'){
@@ -3261,17 +3250,17 @@ void mensaje(void){
 
         }
         if (RCREG == 'c'){
-            printf("\r Seleccione entre los siguiente para dar la posicion:");
+            printf("\n Seleccione entre los siguiente para dar la posicion:");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r p: -45 ");
+            printf("\n p: -45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r o: -90 ");
+            printf("\n o: -90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r i: 0 ");
+            printf("\n i: 0 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r u: 90 ");
+            printf("\n u: 90 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
-            printf("\r y: 45 ");
+            printf("\n y: 45 ");
             _delay((unsigned long)((250)*(4000000/4000.0)));
             while (RCIF == 0);
             if (RCREG == 'p'){
@@ -3293,13 +3282,13 @@ void mensaje(void){
         }
     }
     if (RCREG == '2'){
-        printf("\r Hacia donde desea mover el motor? \r");
+        printf("\n Hacia donde desea mover el motor? \n");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r r: Derecha");
+        printf("\n r: Derecha");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r l: Izquierda");
+        printf("\n l: Izquierda");
         _delay((unsigned long)((250)*(4000000/4000.0)));
-        printf("\r s: Detener");
+        printf("\n s: Detener");
         _delay((unsigned long)((250)*(4000000/4000.0)));
         while (RCIF == 0);
         if (RCREG == 'r'){
@@ -3314,7 +3303,7 @@ void mensaje(void){
     }
     if (RCREG == '3'){
         pasar_a_uart = 0;
-        printf("\r Ha finalizado la comunicacion UART");
+        printf("\n Ha finalizado la comunicacion UART");
         _delay((unsigned long)((250)*(4000000/4000.0)));
     }
     else{
@@ -3418,7 +3407,9 @@ void setup(void){
     PIR1bits.ADIF = 0;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-# 721 "main_brazo.c"
+
+
+
     IOCBbits.IOCB3 = 1;
     IOCBbits.IOCB4 = 1;
     IOCBbits.IOCB7 = 1;

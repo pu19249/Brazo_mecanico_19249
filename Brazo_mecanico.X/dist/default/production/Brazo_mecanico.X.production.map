@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Brazo_mecanico.X.production.sym \
   --cmf=dist/default/production\Brazo_mecanico.X.production.cmf -z -Q16F887 \
-  -oC:\Users\jpu20\AppData\Local\Temp\sal0.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\jpu20\AppData\Local\Temp\sbt4.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Brazo_mecanico.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\jpu20\AppData\Local\Temp\sal0.o \
+  -pfunctab=ENTRY -k C:\Users\jpu20\AppData\Local\Temp\sbt4.o \
   dist/default/production\Brazo_mecanico.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\jpu20\AppData\Local\Temp\sal0.o
+C:\Users\jpu20\AppData\Local\Temp\sbt4.o
                 end_init                             12       12        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -520,7 +520,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 290 in file "main_brazo.c"
+		line 283 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -549,7 +549,7 @@ Total ram usage:        0 bytes
 
  *************** function _setup *****************
  Defined at:
-		line 617 in file "main_brazo.c"
+		line 606 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -629,7 +629,7 @@ Total ram usage:        7 bytes
 
  *************** function _mensaje *****************
  Defined at:
-		line 465 in file "main_brazo.c"
+		line 454 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -677,7 +677,7 @@ Total ram usage:        3 bytes
 
  *************** function _servo_3_5 *****************
  Defined at:
-		line 434 in file "main_brazo.c"
+		line 423 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -707,7 +707,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_3_4 *****************
  Defined at:
-		line 427 in file "main_brazo.c"
+		line 416 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -737,7 +737,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_3_3 *****************
  Defined at:
-		line 420 in file "main_brazo.c"
+		line 409 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -767,7 +767,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_3_2 *****************
  Defined at:
-		line 413 in file "main_brazo.c"
+		line 402 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -797,7 +797,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_3_1 *****************
  Defined at:
-		line 406 in file "main_brazo.c"
+		line 395 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -827,7 +827,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_5 *****************
  Defined at:
-		line 399 in file "main_brazo.c"
+		line 388 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -857,7 +857,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_4 *****************
  Defined at:
-		line 392 in file "main_brazo.c"
+		line 381 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -887,7 +887,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_3 *****************
  Defined at:
-		line 385 in file "main_brazo.c"
+		line 374 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -917,7 +917,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_2 *****************
  Defined at:
-		line 378 in file "main_brazo.c"
+		line 367 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -947,7 +947,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_2_1 *****************
  Defined at:
-		line 371 in file "main_brazo.c"
+		line 360 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -977,7 +977,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_5 *****************
  Defined at:
-		line 364 in file "main_brazo.c"
+		line 353 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1007,7 +1007,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_4 *****************
  Defined at:
-		line 357 in file "main_brazo.c"
+		line 346 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1037,7 +1037,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_3 *****************
  Defined at:
-		line 350 in file "main_brazo.c"
+		line 339 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1067,7 +1067,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_2 *****************
  Defined at:
-		line 343 in file "main_brazo.c"
+		line 332 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1097,7 +1097,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo_1_1 *****************
  Defined at:
-		line 336 in file "main_brazo.c"
+		line 325 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1173,7 +1173,7 @@ Total ram usage:        7 bytes
 
  *************** function _putch *****************
  Defined at:
-		line 459 in file "main_brazo.c"
+		line 448 in file "main_brazo.c"
  Parameters:    Size  Location     Type
   dato            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1202,7 +1202,7 @@ Total ram usage:        1 bytes
 
  *************** function _motor_detenido *****************
  Defined at:
-		line 441 in file "main_brazo.c"
+		line 430 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1232,7 +1232,7 @@ Total ram usage:        0 bytes
 
  *************** function _motor_2 *****************
  Defined at:
-		line 453 in file "main_brazo.c"
+		line 442 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1263,7 +1263,7 @@ Total ram usage:        2 bytes
 
  *************** function _motor_1 *****************
  Defined at:
-		line 447 in file "main_brazo.c"
+		line 436 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1327,7 +1327,7 @@ Total ram usage:        9 bytes
 
  *************** function _leer_eeprom *****************
  Defined at:
-		line 328 in file "main_brazo.c"
+		line 317 in file "main_brazo.c"
  Parameters:    Size  Location     Type
   address         1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1357,7 +1357,7 @@ Total ram usage:        3 bytes
 
  *************** function _escribir_eeprom *****************
  Defined at:
-		line 306 in file "main_brazo.c"
+		line 295 in file "main_brazo.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
   address         1    0[COMMON] unsigned char 

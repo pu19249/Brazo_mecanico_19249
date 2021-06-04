@@ -17,53 +17,53 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "87 C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
 [v _isr isr `II(v  1 e 1 0 ]
-"290
+"283
 [v _main main `(v  1 e 1 0 ]
-"306
+"295
 [v _escribir_eeprom escribir_eeprom `(v  1 e 1 0 ]
-"328
+"317
 [v _leer_eeprom leer_eeprom `(uc  1 e 1 0 ]
-"336
+"325
 [v _servo_1_1 servo_1_1 `(v  1 e 1 0 ]
-"343
+"332
 [v _servo_1_2 servo_1_2 `(v  1 e 1 0 ]
-"350
+"339
 [v _servo_1_3 servo_1_3 `(v  1 e 1 0 ]
-"357
+"346
 [v _servo_1_4 servo_1_4 `(v  1 e 1 0 ]
-"364
+"353
 [v _servo_1_5 servo_1_5 `(v  1 e 1 0 ]
-"371
+"360
 [v _servo_2_1 servo_2_1 `(v  1 e 1 0 ]
-"378
+"367
 [v _servo_2_2 servo_2_2 `(v  1 e 1 0 ]
-"385
+"374
 [v _servo_2_3 servo_2_3 `(v  1 e 1 0 ]
-"392
+"381
 [v _servo_2_4 servo_2_4 `(v  1 e 1 0 ]
-"399
+"388
 [v _servo_2_5 servo_2_5 `(v  1 e 1 0 ]
-"406
+"395
 [v _servo_3_1 servo_3_1 `(v  1 e 1 0 ]
-"413
+"402
 [v _servo_3_2 servo_3_2 `(v  1 e 1 0 ]
-"420
+"409
 [v _servo_3_3 servo_3_3 `(v  1 e 1 0 ]
-"427
+"416
 [v _servo_3_4 servo_3_4 `(v  1 e 1 0 ]
-"434
+"423
 [v _servo_3_5 servo_3_5 `(v  1 e 1 0 ]
-"441
+"430
 [v _motor_detenido motor_detenido `(v  1 e 1 0 ]
-"447
+"436
 [v _motor_1 motor_1 `(v  1 e 1 0 ]
-"453
+"442
 [v _motor_2 motor_2 `(v  1 e 1 0 ]
-"459
+"448
 [v _putch putch `(v  1 e 1 0 ]
-"465
+"454
 [v _mensaje mensaje `(v  1 e 1 0 ]
-"617
+"606
 [v _setup setup `(v  1 e 1 0 ]
 "166 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -470,100 +470,100 @@
 [v _estado_motor_nuevo estado_motor_nuevo `uc  1 e 1 0 ]
 "56
 [v _pasar_a_uart pasar_a_uart `uc  1 e 1 0 ]
-"290
+"283
 [v _main main `(v  1 e 1 0 ]
 {
-"300
+"289
 } 0
-"617
+"606
 [v _setup setup `(v  1 e 1 0 ]
 {
-"757
+"737
 } 0
 "87
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"286
+"279
 } 0
-"465
+"454
 [v _mensaje mensaje `(v  1 e 1 0 ]
 {
-"612
+"601
 } 0
-"434
+"423
 [v _servo_3_5 servo_3_5 `(v  1 e 1 0 ]
 {
-"439
+"428
 } 0
-"427
+"416
 [v _servo_3_4 servo_3_4 `(v  1 e 1 0 ]
 {
-"432
+"421
 } 0
-"420
+"409
 [v _servo_3_3 servo_3_3 `(v  1 e 1 0 ]
 {
-"425
+"414
 } 0
-"413
+"402
 [v _servo_3_2 servo_3_2 `(v  1 e 1 0 ]
 {
-"418
+"407
 } 0
-"406
+"395
 [v _servo_3_1 servo_3_1 `(v  1 e 1 0 ]
 {
-"411
+"400
 } 0
-"399
+"388
 [v _servo_2_5 servo_2_5 `(v  1 e 1 0 ]
 {
-"404
+"393
 } 0
-"392
+"381
 [v _servo_2_4 servo_2_4 `(v  1 e 1 0 ]
 {
-"397
+"386
 } 0
-"385
+"374
 [v _servo_2_3 servo_2_3 `(v  1 e 1 0 ]
 {
-"390
+"379
 } 0
-"378
+"367
 [v _servo_2_2 servo_2_2 `(v  1 e 1 0 ]
 {
-"383
+"372
 } 0
-"371
+"360
 [v _servo_2_1 servo_2_1 `(v  1 e 1 0 ]
 {
-"376
+"365
 } 0
-"364
+"353
 [v _servo_1_5 servo_1_5 `(v  1 e 1 0 ]
 {
-"369
+"358
 } 0
-"357
+"346
 [v _servo_1_4 servo_1_4 `(v  1 e 1 0 ]
 {
-"362
+"351
 } 0
-"350
+"339
 [v _servo_1_3 servo_1_3 `(v  1 e 1 0 ]
 {
-"355
+"344
 } 0
-"343
+"332
 [v _servo_1_2 servo_1_2 `(v  1 e 1 0 ]
 {
-"348
+"337
 } 0
-"336
+"325
 [v _servo_1_1 servo_1_1 `(v  1 e 1 0 ]
 {
-"341
+"330
 } 0
 "477 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -576,28 +576,28 @@
 [v printf@f f `*.25DCuc  1 p 2 1 ]
 "1567
 } 0
-"459 C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+"448 C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
 [v _putch putch `(v  1 e 1 0 ]
 {
 [v putch@dato dato `uc  1 a 1 wreg ]
 [v putch@dato dato `uc  1 a 1 wreg ]
 [v putch@dato dato `uc  1 a 1 0 ]
-"463
+"452
 } 0
-"441
+"430
 [v _motor_detenido motor_detenido `(v  1 e 1 0 ]
 {
-"445
+"434
 } 0
-"453
+"442
 [v _motor_2 motor_2 `(v  1 e 1 0 ]
 {
-"457
+"446
 } 0
-"447
+"436
 [v _motor_1 motor_1 `(v  1 e 1 0 ]
 {
-"451
+"440
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
@@ -612,23 +612,23 @@
 [v ___awdiv@dividend dividend `i  1 p 2 2 ]
 "41
 } 0
-"328 C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
+"317 C:\Users\jpu20\Documents\GitHub\Brazo_mecanico_19249\Brazo_mecanico.X\main_brazo.c
 [v _leer_eeprom leer_eeprom `(uc  1 e 1 0 ]
 {
 [v leer_eeprom@address address `uc  1 a 1 wreg ]
-"332
+"321
 [v leer_eeprom@data data `uc  1 a 1 2 ]
-"328
+"317
 [v leer_eeprom@address address `uc  1 a 1 wreg ]
 [v leer_eeprom@address address `uc  1 a 1 1 ]
-"334
+"323
 } 0
-"306
+"295
 [v _escribir_eeprom escribir_eeprom `(v  1 e 1 0 ]
 {
 [v escribir_eeprom@data data `uc  1 a 1 wreg ]
 [v escribir_eeprom@data data `uc  1 a 1 wreg ]
 [v escribir_eeprom@address address `uc  1 p 1 0 ]
 [v escribir_eeprom@data data `uc  1 a 1 1 ]
-"326
+"315
 } 0

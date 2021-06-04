@@ -90,18 +90,18 @@ void __interrupt() isr(void){
         if (ADCON0bits.CHS == 0){
             ADCON0bits.CHS = 1;
             if (RB2 == 0){
-                motor_detenido();
-                estado_motor = 0b11;
+                motor_detenido();       //llama la funcion para poner a 0 CCPx
+                estado_motor = 0b11;    //esto me sirve para la eeprom
             }
-            else if (RB0 == 0){
-                motor_1();
-                estado_motor = 0b01;
+            else if (RB0 == 0){         //este es movimiento a la izquierda
+                motor_1();              
+                estado_motor = 0b01;    //nuevamente para la eeprom
             }
-            else if (RB1 == 0){
+            else if (RB1 == 0){         //para el movimieto a la derecha
                 motor_2();
                 estado_motor = 0b10;
             }
-            else {
+            else {                      //sino esta ninguno se apagan las leds
                 RE0 = 0;
                 RE1 = 0;
                 RE2 = 0;
@@ -109,12 +109,12 @@ void __interrupt() isr(void){
         }
         else if (ADCON0bits.CHS == 1){
             ADCON0bits.CHS = 2;
-            pot2 = ADRESH;
-            if (pot2<=50){ //de 0 a 50 en el pot va a tener -90 grados
-                servo_1_1();
+            pot2 = ADRESH;              //toma el valor del adc
+            if (pot2<=50){          //de 0 a 50 en el pot va a tener -90 grados
+                servo_1_1();        //llama a la funcion de los delays
             }
-            if ((pot2<=101) && (pot2>=51)){
-                servo_1_2();
+            if ((pot2<=101) && (pot2>=51)){ //los siguientes rangos
+                servo_1_2();                
               
             }
             if ((pot2<=152) && (pot2>=102)){
@@ -128,7 +128,7 @@ void __interrupt() isr(void){
             }
         }
         else if (ADCON0bits.CHS == 2){
-            ADCON0bits.CHS = 3;
+            ADCON0bits.CHS = 3;         //para el segundo potenciometr
             pot3 = ADRESH;
             if (pot3<=50){ //de 0 a 50 en el pot va a tener -90 grados
                 servo_2_1();
@@ -149,7 +149,7 @@ void __interrupt() isr(void){
         
         else if (ADCON0bits.CHS == 3){
             ADCON0bits.CHS = 0;
-            pot4 = ADRESH;
+            pot4 = ADRESH; //para el ultimo pot
             if (pot4<=50){ //de 0 a 50 en el pot va a tener -90 grados
                 servo_3_1();
             }
@@ -172,23 +172,23 @@ void __interrupt() isr(void){
     
     if (RBIF == 1){ //alguno de los dos botones que tengo se presiono
         if (RB3 == 0){ //porque es pull-up
-            RB6 = 0;
-            RB5 = 1;
-            escribir_eeprom(pot2, 0x16);
-            escribir_eeprom(pot3, 0x17);
+            //rutina para escribir
+            RB6 = 0;    //se apaga la de lectura
+            RB5 = 1;    //se enciende la de escritura
+            escribir_eeprom(pot2, 0x16);    //escribe las posiciones actuales
+            escribir_eeprom(pot3, 0x17);    //de los tres servos
             escribir_eeprom(pot4, 0x18);
-            escribir_eeprom(estado_motor, 0x19);
+            escribir_eeprom(estado_motor, 0x19); //y si se estaba moviendo el dc
             __delay_ms(500);
-            RB5 = 0;
+            RB5 = 0;                     //se apaga para indicar que ya termino
         }
         if (RB4 == 0){
-            //ADCON0bits.GO = 0;
-            //ADCON0bits.ADON = 0;
-            RB5 = 0;
-            RB6 = 1;
-            pot2_nuevo = leer_eeprom(0x16);
-            pot3_nuevo = leer_eeprom(0x17);
-            pot4_nuevo = leer_eeprom(0x18);
+            //rutina para leer de la eeprom
+            RB5 = 0;    //se apaga la de la escritura
+            RB6 = 1;    //se enciende la lectura
+            pot2_nuevo = leer_eeprom(0x16); //guardo en nuevas variables para la 
+            pot3_nuevo = leer_eeprom(0x17); //nueva posicion de los servos
+            pot4_nuevo = leer_eeprom(0x18); //esta se muestra durante 2segundos
             estado_motor_nuevo = leer_eeprom(0x19);
             if (pot2_nuevo<=50){ //de 0 a 50 en el pot va a tener -90 grados
                 servo_1_1();
@@ -263,24 +263,17 @@ void __interrupt() isr(void){
                 
             }
         __delay_ms(2000);
-        //ADCON0bits.GO = 1;
-        RB6 = 0;
+        
+        RB6 = 0;            //se apaga para indicar que ya terminaron los 2seg
     }
-        if (RB7 == 0){
-            pasar_a_uart = 1;
+        if (RB7 == 0){      //para entrar al modo uart
+            pasar_a_uart = 1;   //si se presiona se coloca en uno la bandera
             while(pasar_a_uart == 1){
-          
-                mensaje();
-            }
-//            if (RB7 == 0){ //si se volvio a presionar el boton
-//                pasar_a_uart = 0; //que salga de modo uart
-//            }
+                mensaje(); //mientras la bandera siga en uno todo func. con uart
+            }           
         }
         RBIF = 0; //limpio la interrupcion para que salga de aqui
-        
-        //__delay_ms(100);
-        //ADCON0bits.ADON = 1;
-        
+               
     }
 
 }
@@ -290,13 +283,9 @@ void __interrupt() isr(void){
 void main(void){
     setup();
      
-    while(1){
-            
+    while(1){  
         ADCON0bits.GO = 1; //inicia la conversion otra vez
-        
         }
-    
-    
 }
 
 /*==============================================================================
@@ -335,7 +324,7 @@ char leer_eeprom(char address){
 
 void servo_1_1(void){           //rango de posicion 1 para el servo1
     RD0 = 1;
-    __delay_ms(0.7);
+    __delay_ms(0.7);            //siempre suman 20ms el periodo del servo
     RD0 = 0;
     __delay_ms(19.3);
 }
@@ -438,25 +427,25 @@ void servo_3_5(void){           //rango de posicion 5 para el servo3
     __delay_ms(18);
 }
 
-void motor_detenido(void){
-    CCPR1L = 0;
-    CCPR2L = 0;
-    RE2 = 1;
+void motor_detenido(void){      
+    CCPR1L = 0;             //se apagan ambas signals de CCPx para que no se 
+    CCPR2L = 0;             //mueva
+    RE2 = 1;                //esta led me indica que esta apagado
 }
 
 void motor_1(void){
-    CCPR1L = ADRESH/4;
-    CCPR2L = 0;
+    CCPR1L = ADRESH/4;      //con el modulo L293D le indica al CCP1 que mande
+    CCPR2L = 0;             //una pwm que se controla con un pot
     RE0 = 1;
 }
 
 void motor_2(void){
-    CCPR1L = 0;
+    CCPR1L = 0;             //y ahora apaga el CCP1 y enciende la pwm del CCP2
     CCPR2L = ADRESH/4;
-    RE1 = 1;
+    RE1 = 1;                //y tambien me lo indica con una led
 }
 
-void putch(char dato){
+void putch(char dato){      //para la transmision
     while(TXIF == 0);
     TXREG = dato; //transmite los datos al recibir un printf en alguna  parte 
     return;
@@ -464,40 +453,40 @@ void putch(char dato){
 
 void mensaje(void){
     __delay_ms(500); //para que despliegue los datos en el tiempo correcto
-    printf("\r Que accion desea ejecutar \r");
+    printf("\n Que accion desea ejecutar \n");
     __delay_ms(250);
-    printf("(1) Mover servos \r");
+    printf("(1) Mover servos \n");
     __delay_ms(250);
-    printf("(2) Mover motor \r");
+    printf("(2) Mover motor \n");
     __delay_ms(250);
-    printf("(3) Salir del modo UART \r");
-    while (RCIF == 0);
+    printf("(3) Salir del modo UART \n");
+    while (RCIF == 0);      //espera una respuesta de la seleccion
     if (RCREG == '1'){
         __delay_ms(500);
-        printf("\r Cual de los servos desea mover?\r");
+        printf("\n Cual de los servos desea mover?\n");
         __delay_ms(250);
-        printf("\r a. Servo 1");
+        printf("\n a. Servo 1");        //cada uno tiene submenus
         __delay_ms(250);
-        printf("\r b. Servo 2");
+        printf("\n b. Servo 2");        
         __delay_ms(250);
-        printf("\r c. Servo 3");
+        printf("\n c. Servo 3");
         while (RCIF == 0); //esperar una respuesta
         if (RCREG == 'a'){
-            printf("\r Seleccione entre los siguiente para dar la posicion:");
+            printf("\n Seleccione entre los siguiente para dar la posicion:");
             __delay_ms(250);
-            printf("\r q: -45 ");
+            printf("\n q: -90 ");
             __delay_ms(250);
-            printf("\r w: -90 ");
+            printf("\n w: -45 ");
             __delay_ms(250);
-            printf("\r e: 0 ");
+            printf("\n e: 0 ");
             __delay_ms(250);
-            printf("\r r: 90 ");
+            printf("\n r: 45 ");
             __delay_ms(250);
-            printf("\r t: 45 ");
+            printf("\n t: 90 ");
             __delay_ms(250);
             while (RCIF == 0);
-            if (RCREG == 'q'){
-                servo_1_1();                                  
+            if (RCREG == 'q'){      //dependiendo de cada seleccion se va a
+                servo_1_1();        //las mismas funciones de antes de servos
             }
             if (RCREG == 'w'){
                 servo_1_2();
@@ -515,20 +504,20 @@ void mensaje(void){
                 servo_1_5();
                 
             }
-            //while (RCIF == 0);
+            
         }
-        if (RCREG == 'b'){
-            printf("\r Seleccione entre los siguiente para dar la posicion:");
+        if (RCREG == 'b'){      //este es el submenu del otro servo
+            printf("\n Seleccione entre los siguiente para dar la posicion:");
             __delay_ms(250);
-            printf("\r z: -45 ");
+            printf("\n z: -45 ");
             __delay_ms(250);
-            printf("\r x: -90 ");
+            printf("\n x: -90 ");
             __delay_ms(250);
-            printf("\r g: 0 ");
+            printf("\n g: 0 ");
             __delay_ms(250);
-            printf("\r v: 90 ");
+            printf("\n v: 90 ");
             __delay_ms(250);
-            printf("\r b: 45 ");
+            printf("\n b: 45 ");
             __delay_ms(250);
             while (RCIF == 0);
             if (RCREG == 'z'){
@@ -546,20 +535,20 @@ void mensaje(void){
             if (RCREG == 'b'){
                 servo_2_5();
             }
-            //while (RCIF == 0);
+            
         }
-        if (RCREG == 'c'){
-            printf("\r Seleccione entre los siguiente para dar la posicion:");
+        if (RCREG == 'c'){ //y este el del tercer servomotor
+            printf("\n Seleccione entre los siguiente para dar la posicion:");
             __delay_ms(250);
-            printf("\r p: -45 ");
+            printf("\n p: -45 ");
             __delay_ms(250);
-            printf("\r o: -90 ");
+            printf("\n o: -90 ");
             __delay_ms(250);
-            printf("\r i: 0 ");
+            printf("\n i: 0 ");
             __delay_ms(250);
-            printf("\r u: 90 ");
+            printf("\n u: 90 ");
             __delay_ms(250);
-            printf("\r y: 45 ");
+            printf("\n y: 45 ");
             __delay_ms(250);
             while (RCIF == 0);
             if (RCREG == 'p'){
@@ -577,20 +566,20 @@ void mensaje(void){
             if (RCREG == 'y'){
                 servo_3_5();
             }
-            //while (RCIF == 0);
+            
         }
     }
     if (RCREG == '2'){ //segunda opcion del menu
-        printf("\r Hacia donde desea mover el motor? \r");
+        printf("\n Hacia donde desea mover el motor? \n");
         __delay_ms(250);
-        printf("\r r: Derecha");
+        printf("\n r: Derecha"); //comienza con la pwm de ccp1
         __delay_ms(250);
-        printf("\r l: Izquierda");
+        printf("\n l: Izquierda");
         __delay_ms(250);
-        printf("\r s: Detener");
+        printf("\n s: Detener");
         __delay_ms(250);
         while (RCIF == 0);
-        if (RCREG == 'r'){
+        if (RCREG == 'r'){      //y tambien espera una respuesta
             motor_1();
         }
         if (RCREG == 'l'){
@@ -601,8 +590,8 @@ void mensaje(void){
         }
     }
     if (RCREG == '3'){ //tercera opcion del menu
-        pasar_a_uart = 0;
-        printf("\r Ha finalizado la comunicacion UART");
+        pasar_a_uart = 0; //cuando vuelva a revisar el while ya no entra a uart
+        printf("\n Ha finalizado la comunicacion UART");
         __delay_ms(250);
     }
     else{ //cualquier otra opcion que no este en el menu
@@ -706,16 +695,7 @@ void setup(void){
     PIR1bits.ADIF = 0;      //limpiar la interrupcion del ADC
     INTCONbits.GIE = 1;     //habilita las interrupciones globales
     INTCONbits.PEIE = 1;    //periferical interrupts
-//    INTCONbits.T0IE = 1;    //habilita la interrupcion del timer0
-//    INTCONbits.T0IF = 0;    //limpia bit de int del timer 0
-//    
-//    //configurar el timer0
-//    OPTION_REGbits.T0CS = 0;     //oscilador interno
-//    OPTION_REGbits.PSA = 0;      //prescaler asignado al timer0
-//    OPTION_REGbits.PS0 = 1;      //prescaler tenga un valor 1:16
-//    OPTION_REGbits.PS1 = 1;
-//    OPTION_REGbits.PS2 = 0;
-//    TMR0 = 176;
+
     
     //Configuracion de interrupcion del puerto B
     IOCBbits.IOCB3 = 1;     //Boton de escritura
@@ -725,7 +705,7 @@ void setup(void){
     INTCONbits.RBIF = 0;    //limpiar bandera de interrupcion
     
     //configurar transmisor y receptor asincrono
-    SPBRG = 103;         //para el baud rate de 600
+    SPBRG = 103;         //para el baud rate de 9600
     SPBRGH = 0;
     BAUDCTLbits.BRG16 = 1; //8bits baud rate generator is used
     TXSTAbits.BRGH = 1; //high speed
