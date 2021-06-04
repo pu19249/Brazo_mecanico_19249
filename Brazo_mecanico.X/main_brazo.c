@@ -53,7 +53,7 @@ char pot2, pot3, pot4;
 char pot2_nuevo, pot3_nuevo, pot4_nuevo;
 char estado_motor;
 char estado_motor_nuevo;
-char puerto_a, puerto_b;
+char pasar_a_uart;
 /*==============================================================================
                                INTERRUPCIONES Y PROTOTIPOS
  =============================================================================*/
@@ -266,6 +266,15 @@ void __interrupt() isr(void){
         //ADCON0bits.GO = 1;
         RB6 = 0;
         }
+        if (RB7 == 0){
+            pasar_a_uart = 1;
+            while(pasar_a_uart == 1){
+            mensaje();
+            }
+            if (RB7 == 0){ //si se volvio a presionar el boton
+                pasar_a_uart = 0; //que salga de modo uart
+            }
+        }
         RBIF = 0; //limpio la interrupcion para que salga de aqui
         
         //__delay_ms(100);
@@ -283,7 +292,7 @@ void main(void){
     while(1){
             
         ADCON0bits.GO = 1; //inicia la conversion otra vez
-        mensaje();
+        
         }
     
     
@@ -460,11 +469,11 @@ void mensaje(void){
     __delay_ms(250);
     printf("(2) Mover motor \r");
     __delay_ms(250);
-    printf("(3)  \r");
+    printf("(3) Salir del modo UART \r");
     while (RCIF == 0);
     if (RCREG == '1'){
         __delay_ms(500);
-        printf("\r ¿Cual de los servos desea mover?\r");
+        printf("\r Cual de los servos desea mover?\r");
         __delay_ms(250);
         printf("\r a. Servo 1");
         __delay_ms(250);
@@ -583,12 +592,9 @@ void mensaje(void){
             motor_detenido();
         }
     }
-    /*if (RCREG == '3'){ //tercera opcion del menu
-        printf("\r Presione el caracter para desplegar en PORTB: \r");
-        while (RCIF == 0);
-        puerto_b = RCREG;
-        PORTB = puerto_b;
-    }*/
+    if (RCREG == '3'){ //tercera opcion del menu
+        pasar_a_uart = 0;
+    }
     else{ //cualquier otra opcion que no este en el menu
         NULL;
     }
@@ -641,7 +647,7 @@ void setup(void){
     WPUBbits.WPUB1 = 1;   //boton2
     WPUBbits.WPUB2 = 1;   //boton3
     WPUBbits.WPUB3 = 1;   //boton4
-    WPUBbits.WPUB7 = 0;   //para que no se encienda el rb7   
+    WPUBbits.WPUB7 = 1;   //para que no se encienda el rb7   
     //Configurar reloj interno
     OSCCONbits.IRCF0 = 0;        //reloj interno de 4mhz
     OSCCONbits.IRCF1 = 1;
@@ -704,6 +710,7 @@ void setup(void){
     //Configuracion de interrupcion del puerto B
     IOCBbits.IOCB3 = 1;     //Boton de escritura
     IOCBbits.IOCB4 = 1;     //Boton de lectura
+    IOCBbits.IOCB7 = 1;     //Boton de UART
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;    //limpiar bandera de interrupcion
     

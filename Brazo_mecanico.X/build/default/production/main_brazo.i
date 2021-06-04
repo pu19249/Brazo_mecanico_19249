@@ -2765,7 +2765,7 @@ char pot2, pot3, pot4;
 char pot2_nuevo, pot3_nuevo, pot4_nuevo;
 char estado_motor;
 char estado_motor_nuevo;
-char puerto_a, puerto_b;
+char pasar_a_uart;
 
 
 
@@ -2978,6 +2978,15 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
         RB6 = 0;
         }
+        if (RB7 == 0){
+            pasar_a_uart = 1;
+            while(pasar_a_uart == 1){
+            mensaje();
+            }
+            if (RB7 == 0){
+                pasar_a_uart = 0;
+            }
+        }
         RBIF = 0;
 
 
@@ -2995,7 +3004,7 @@ void main(void){
     while(1){
 
         ADCON0bits.GO = 1;
-        mensaje();
+
         }
 
 
@@ -3172,11 +3181,11 @@ void mensaje(void){
     _delay((unsigned long)((250)*(4000000/4000.0)));
     printf("(2) Mover motor \r");
     _delay((unsigned long)((250)*(4000000/4000.0)));
-    printf("(3)  \r");
+    printf("(3) Salir del modo UART \r");
     while (RCIF == 0);
     if (RCREG == '1'){
         _delay((unsigned long)((500)*(4000000/4000.0)));
-        printf("\r ¿Cual de los servos desea mover?\r");
+        printf("\r Cual de los servos desea mover?\r");
         _delay((unsigned long)((250)*(4000000/4000.0)));
         printf("\r a. Servo 1");
         _delay((unsigned long)((250)*(4000000/4000.0)));
@@ -3295,12 +3304,9 @@ void mensaje(void){
             motor_detenido();
         }
     }
-
-
-
-
-
-
+    if (RCREG == '3'){
+        pasar_a_uart = 0;
+    }
     else{
         (0);
     }
@@ -3353,7 +3359,7 @@ void setup(void){
     WPUBbits.WPUB1 = 1;
     WPUBbits.WPUB2 = 1;
     WPUBbits.WPUB3 = 1;
-    WPUBbits.WPUB7 = 0;
+    WPUBbits.WPUB7 = 1;
 
     OSCCONbits.IRCF0 = 0;
     OSCCONbits.IRCF1 = 1;
@@ -3402,9 +3408,10 @@ void setup(void){
     PIR1bits.ADIF = 0;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-# 705 "main_brazo.c"
+# 711 "main_brazo.c"
     IOCBbits.IOCB3 = 1;
     IOCBbits.IOCB4 = 1;
+    IOCBbits.IOCB7 = 1;
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
 
